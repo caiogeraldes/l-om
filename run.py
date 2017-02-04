@@ -5,7 +5,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
-from lom import hk_dv, iast_dv, hk_iast, dv_iast
+from bin import hk_dv, iast_dv, hk_iast, dv_iast
 
 class Janela(Gtk.Window):
 
@@ -136,7 +136,7 @@ class Sobre(Gtk.AboutDialog):
         Gtk.AboutDialog.__init__(self)
         self.set_border_width(20)
         self.set_program_name('Transliterador L-Oṃ')
-        self.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/lom.png', 100, 100))
+        self.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/bin.png', 100, 100))
         self.set_version('0.3')
         self.set_license('Open Source e tal.')
         self.set_comments('Transliterador com os métodos:'
