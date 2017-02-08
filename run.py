@@ -5,7 +5,8 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
-from bin import hk_dv, iast_dv, hk_iast, dv_iast
+from transl import hk_dv, iast_dv, hk_iast, dv_iast
+
 
 class Janela(Gtk.Window):
 
@@ -124,34 +125,25 @@ class Janela(Gtk.Window):
     # Define a abertura da janela 'Sobre'
 
     def sobre_clicked(self, widget):
-        dialog = Sobre()
-        dialog.run()
-        dialog.destroy()
-
-# Modelo da janela 'Sobre'
-
-
-class Sobre(Gtk.AboutDialog):
-    def __init__(self):
-        Gtk.AboutDialog.__init__(self)
-        self.set_border_width(20)
-        self.set_program_name('Transliterador L-Oṃ')
-        self.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/bin.png', 100, 100))
-        self.set_version('0.3')
-        self.set_license('Open Source e tal.')
-        self.set_comments('Transliterador com os métodos:'
+        sobre = Gtk.AboutDialog()
+        sobre.set_border_width(20)
+        sobre.set_program_name('Transliterador L-Oṃ')
+        sobre.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/lom.png', 100, 100))
+        sobre.set_version('0.3')
+        sobre.set_license('Open Source e tal.')
+        sobre.set_comments('Transliterador com os métodos:'
                           '\n\nHarvard-Kyoto >> Devanāgarī e IAST \nIAST >> Devanāgarī\nDevanāgarī >> IAST \n\n'
                           '~~~ Ainda com alguns bugs com relação ao uso de múltiplas linhas. \n'
                           'Converte o recuo em um caractere UTF-8, o qual '
                           'desaparece em editores de texto como Office. ~~~')
-        self.set_copyright('\u00A9 Caio Borges Aguida Geraldes, 2017.')
-        self.set_authors(['Caio Borges Aguida Geraldes'])
-        self.show_all()
+        sobre.set_copyright('\u00A9 Caio Borges Aguida Geraldes, 2017.')
+        sobre.set_authors(['Caio Borges Aguida Geraldes'])
+        sobre.run()
+        sobre.destroy()
 
+if __name__ == '__main__':
+        window = Janela()
+        window.connect("delete-event", Gtk.main_quit)
+        window.show_all()
+        Gtk.main()
 
-
-
-window = Janela()
-window.connect("delete-event", Gtk.main_quit)
-window.show_all()
-Gtk.main()
