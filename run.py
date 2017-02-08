@@ -14,6 +14,7 @@ class Janela(Gtk.Window):
         Gtk.Window.__init__(self, title="Transliterador L-Oṃ")
         self.set_size_request(400, 200)
         self.set_border_width(20)
+        self.set_position(Gtk.WindowPosition.CENTER)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         self.add(vbox)
