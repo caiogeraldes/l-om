@@ -13,15 +13,15 @@ def checker(entrada):
 
     for i in entrada:
         if i in dv:
-            translit = 'dv'
+            translit = 'Devanāgarī'
             return translit
             break
         elif i in iast:
-            translit = 'iast'
+            translit = 'IAST'
             return translit
             break
         elif i in hk:
-            translit = 'hk'
+            translit = 'Harvard-Kyoto'
             return translit
             break
         else:
