@@ -5,7 +5,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
-from transl import hk_dv, iast_dv, hk_iast, dv_iast
+from transl import hk_dv, iast_dv, hk_iast, dv_iast, checktranslit
 
 
 class Janela(Gtk.Window):
@@ -100,28 +100,6 @@ class Janela(Gtk.Window):
         self.botao2.connect('clicked', self.sobre_clicked)
         vbox.pack_start(self.botao2, False, False, 0)
 
-    # Engine
-
-    def conversor(self, widget):
-        entrada = self.texto.get_text()
-        saida = None
-        if self.hk_button.get_active():
-            if self.dv_button.get_active():
-                saida = hk_dv.conversor(entrada)
-            elif self.iast_button2.get_active():
-                saida = hk_iast.conversor(entrada)
-        elif self.iast_button.get_active():
-            if self.dv_button.get_active():
-                saida = iast_dv.conversor(entrada)
-            elif self.iast_button2.get_active():
-                saida = "IAST >> IAST ?"
-        elif self.dv_button2.get_active():
-            if self.iast_button2.get_active():
-                saida = dv_iast.conversor(entrada)
-            elif self.dv_button.get_active():
-                saida = "Devanāgarī >> Devanāgarī ?"
-        self.saida.set_text(saida)
-
     # Define a abertura da janela 'Sobre'
 
     def sobre_clicked(self, widget):
@@ -140,6 +118,56 @@ class Janela(Gtk.Window):
         sobre.set_authors(['Caio Borges Aguida Geraldes'])
         sobre.run()
         sobre.destroy()
+
+    def erro_translit(self, metodo_esperado, metodo_obtido):
+        t_erro = Gtk.MessageDialog()
+        t_erro.add_buttons(Gtk.STOCK_OK, Gtk.ResponseType.OK)
+        t_erro.set_title("Erro no sistema de transliteração")
+        t_erro.set_keep_above(True)
+        t_erro.set_markup("""Eita, o método de transliteração do texto de entrada não corresponde ao método escolhido. \n\tMétodo esperado: %s \n\tMétodo checado: %s. \nA transliteração feita apresentará falhas.""" % (metodo_esperado, metodo_obtido))
+        t_erro.run()
+        t_erro.destroy()
+
+    # Engine
+
+    def conversor(self, widget):
+        entrada = self.texto.get_text()
+        metodo_checagem = checktranslit.checker(entrada)
+        saida = None
+        if self.hk_button.get_active():
+
+            if metodo_checagem == 'Harvard-Kyoto' or metodo_checagem == None:
+                pass
+            else:
+                self.erro_translit('Harvard-Kyoto', metodo_checagem)
+
+            if self.dv_button.get_active():
+                saida = hk_dv.conversor(entrada)
+            elif self.iast_button2.get_active():
+                saida = hk_iast.conversor(entrada)
+        elif self.iast_button.get_active():
+
+            if metodo_checagem == 'IAST' or metodo_checagem == None:            
+                pass
+            else:
+                self.erro_translit("IAST", metodo_checagem)
+
+            if self.dv_button.get_active():
+                saida = iast_dv.conversor(entrada)
+            elif self.iast_button2.get_active():
+                saida = "IAST >> IAST ?"
+        elif self.dv_button2.get_active():
+
+            if metodo_checagem == "Devanāgarī":
+                pass
+            else:
+                self.erro_translit('Devanāgarī', metodo_checagem)
+
+            if self.iast_button2.get_active():
+                saida = dv_iast.conversor(entrada)
+            elif self.dv_button.get_active():
+                saida = "Devanāgarī >> Devanāgarī ?"
+        self.saida.set_text(saida)
 
 if __name__ == '__main__':
         window = Janela()
