@@ -84,6 +84,7 @@ def conversor(entrada):
                 saida.pop(saida.index(c))
 
     saida = ''.join(saida)
+    saida = saida.strip()
     return saida
 
 if __name__ == '__main__':

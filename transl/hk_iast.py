@@ -70,6 +70,7 @@ def conversor(entrada):
         else:
             saida.append(hk_iast_unicode[c])
     saida = ''.join(saida)
+    saida = saida.strip()
     return saida
 
 if __name__ == '__main__':

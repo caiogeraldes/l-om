@@ -102,6 +102,7 @@ def conversor(entrada):
                     saida.append(iast_dv_unicode[letra])
 
     saida = "".join(saida)
+    saida = saida.strip()
     return saida
 
 if __name__ == '__main__':

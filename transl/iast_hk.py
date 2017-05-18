@@ -29,7 +29,8 @@ def conversor(entrada):
             saida.append(letra(iast_hk_unicode[letra]))
 
     saida = ''.join(saida)
-    return(saida)
+    saida = saida.strip()
+    return saida
 
 if __name__ == "__main__":
     conversor(">>>")
