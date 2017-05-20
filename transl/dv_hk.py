@@ -46,6 +46,7 @@ dv_pontuacao = ['।', '।।']
 
 
 def conversor(entrada):
+    ''' conversor(str) >> str'''
     if entrada[-1] != ' ':
         entrada = '%s  ' % entrada
 
