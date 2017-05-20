@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Transliterador  Devanāgarī >>> Harvard-Kyoto
-# Escrito por Caio Borges <caioaguida@gmail.com>
-
-# Dicionário com correspondências entre a entrada em Devanāgarī Unicode e saída em Harvard Kyoto.
-
+''' 
+Transliterador  Devanāgarī >>> Harvard-Kyoto
+Escrito por Caio Borges <caioaguida@gmail.com>
+Dicionário com correspondências entre a entrada em Devanāgarī Unicode e saída em Harvard Kyoto.
+'''
 dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'श': 'z', 'द': 'd', 'उ': 'u', 'ग': 'g',
                  'ज': 'j', 'थ': 'th', 'अ': 'a', 'आ': 'A',
