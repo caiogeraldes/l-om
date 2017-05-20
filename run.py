@@ -42,9 +42,9 @@ class Janela(Gtk.Window):
 
         label = Gtk.Label()
         label.set_label("Conversor entre Alfabeto Latino e Devanāgarī.")
-        vbox.pack_start(label, True, True, 0)
+        vbox.pack_start(label, False, False, 0)
 
-        # Define o Método de Entrada (HK, IAST ou Devanāgarī)
+        # Define o Método de Entrada (HK, Iast ou Devanāgarī)
 
         hbox1 = Gtk.Box(spacing=6)
         vbox.pack_start(hbox1, True, True, 0)
@@ -57,14 +57,14 @@ class Janela(Gtk.Window):
         hbox1.pack_start(self.hk_button, False, False, 0)
 
         self.iast_button = Gtk.RadioButton.new_from_widget(self.hk_button)
-        self.iast_button.set_label("IAST")
+        self.iast_button.set_label("Iast")
         hbox1.pack_start(self.iast_button, False, False, 0)
 
         self.dv_button2 = Gtk.RadioButton.new_from_widget(self.hk_button)
         self.dv_button2.set_label("Devanāgarī")
         hbox1.pack_start(self.dv_button2, False, False, 0)
 
-        # Define o Método de Saída (Devanāgarī ou IAST)
+        # Define o Método de Saída (Devanāgarī ou Iast)
 
         hbox2 = Gtk.Box(spacing=6)
         vbox.pack_start(hbox2, True, True, 0)
@@ -77,13 +77,14 @@ class Janela(Gtk.Window):
         hbox2.pack_start(self.dv_button, False, False, 0)
 
         self.iast_button2 = Gtk.RadioButton.new_from_widget(self.dv_button)
-        self.iast_button2.set_label("IAST")
+        self.iast_button2.set_label("Iast")
         hbox2.pack_start(self.iast_button2, False, False, 0)
 
         # Locais de Input e Output
 
         self.texto = Gtk.Entry()
         self.texto.set_text("Escolha o sistema de escrita da entrada e insira o texto.")
+        self.texto.connect("activate", self.conversor)
         vbox.pack_start(self.texto, True, True, 0)
 
         self.saida = Gtk.Entry()
@@ -95,7 +96,7 @@ class Janela(Gtk.Window):
         self.botao = Gtk.Button(label="Conversor")
         self.botao.set_alignment(0.5, 0.5)
         self.botao.connect("clicked", self.conversor)
-        vbox.pack_start(self.botao, False, False, 0)
+        vbox.pack_start(self.botao, True, False, 0)
 
         self.botao2 = Gtk.Button(label="Sobre")
         self.botao2.connect('clicked', self.sobre_clicked)
@@ -108,10 +109,10 @@ class Janela(Gtk.Window):
         sobre.set_border_width(20)
         sobre.set_program_name('Transliterador L-Oṃ')
         sobre.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/lom.png', 100, 100))
-        sobre.set_version('0.3')
+        sobre.set_version('0.4')
         sobre.set_license('Open Source e tal.')
         sobre.set_comments('Transliterador com os métodos:'
-                          '\n\nHarvard-Kyoto >> Devanāgarī e IAST \nIAST >> Devanāgarī\nDevanāgarī >> IAST \n\n'
+                          '\n\nHarvard-Kyoto >> Devanāgarī e Iast \nIast >> Devanāgarī\nDevanāgarī >> Iast \n\n'
                           '~~~ Ainda com alguns bugs com relação ao uso de múltiplas linhas. \n'
                           'Converte o recuo em um caractere UTF-8, o qual '
                           'desaparece em editores de texto como Office. ~~~')
@@ -137,10 +138,10 @@ class Janela(Gtk.Window):
         saida = None
         if self.hk_button.get_active():
 
-            if metodo_checagem == 'Harvard-Kyoto' or metodo_checagem == None:
+            if metodo_checagem == 'Harvard-kyoto' or metodo_checagem == None:
                 pass
             else:
-                self.erro_translit('Harvard-Kyoto', metodo_checagem)
+                self.erro_translit('Harvard-kyoto', metodo_checagem)
 
             if self.dv_button.get_active():
                 saida = hk_dv.conversor(entrada)
@@ -148,21 +149,21 @@ class Janela(Gtk.Window):
                 saida = hk_iast.conversor(entrada)
         elif self.iast_button.get_active():
 
-            if metodo_checagem == 'IAST' or metodo_checagem == None:            
+            if metodo_checagem == 'Iast' or metodo_checagem == None:
                 pass
             else:
-                self.erro_translit("IAST", metodo_checagem)
+                self.erro_translit("Iast", metodo_checagem)
 
             if self.dv_button.get_active():
                 saida = iast_dv.conversor(entrada)
             elif self.iast_button2.get_active():
-                saida = "IAST >> IAST ?"
+                saida = "Iast >> Iast ?"
         elif self.dv_button2.get_active():
 
-            if metodo_checagem == "Devanāgarī":
+            if metodo_checagem == "Devanagari":
                 pass
             else:
-                self.erro_translit('Devanāgarī', metodo_checagem)
+                self.erro_translit('Devanagari', metodo_checagem)
 
             if self.iast_button2.get_active():
                 saida = dv_iast.conversor(entrada)
