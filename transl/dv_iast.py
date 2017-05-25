@@ -22,15 +22,15 @@ dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
 
 # Dicionário específico para os diacríticos vocálicos.
 
-dv_c_vogais = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
+dv_iast_diacriticos_vogais = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
                'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
                'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
 
 # Listas para especificidades do Devanagari.
 
-dv_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_iast_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
 
-dv_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
+dv_iast_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
                  'च', 'छ', 'ज', 'झ', 'ञ',
                  'ट', 'ठ', 'ड', 'ढ', 'ण',
                  'त', 'थ', 'द', 'ध', 'न',
@@ -38,8 +38,8 @@ dv_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
                  'य', 'र', 'ल', 'व',
                  'श', 'ष', 'स', 'ह']
 
-dv_diacriticos = ['ं', 'ः', 'ऽ']
-dv_pontuacao = ['।', '।।']
+dv_iast_diacriticos = ['ं', 'ः', 'ऽ']
+dv_iast_pontuacao = ['।', '।।']
 
 
 # Função responsável pela conversão.
@@ -53,22 +53,22 @@ def conversor(entrada):
     for i in range(len(entrada)):
         c = entrada[i]
 
-        if c not in dv_iast_unicode.keys() and c not in dv_vogais:
+        if c not in dv_iast_unicode.keys() and c not in dv_iast_vogais:
             saida.append(c)
             continue
 
         if i == len(entrada)-2:
             break
 
-        if c not in dv_iast_unicode and c in dv_vogais:
-            saida.append(dv_c_vogais[c])
-        elif c in dv_consoantes:
-            if entrada[i + 1] in dv_c_vogais:
+        if c not in dv_iast_unicode and c in dv_iast_vogais:
+            saida.append(dv_iast_diacriticos_vogais[c])
+        elif c in dv_iast_consoantes:
+            if entrada[i + 1] in dv_iast_diacriticos_vogais:
                 saida.append(dv_iast_unicode[c])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_consoantes:
+            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_iast_consoantes:
                 saida.append(dv_iast_unicode[c])
                 saida.append('a')
-            elif entrada[i + 1] in dv_diacriticos or entrada[i + 1] in dv_pontuacao:
+            elif entrada[i + 1] in dv_iast_diacriticos or entrada[i + 1] in dv_iast_pontuacao:
                 saida.append(dv_iast_unicode[c])
                 saida.append('a')
             else:
