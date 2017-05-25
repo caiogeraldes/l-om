@@ -204,7 +204,9 @@ def hkdv(entrada):
 
     for letra in entrada:
         i += 1
-        if letra not in hk_dv_unicode:
+        if letra == " ":
+            saida.append(" ")
+        elif letra not in hk_dv_unicode:
             saida.append(letra)
         else:
             if letra in hk_dv_vogais:
