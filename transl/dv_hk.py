@@ -22,15 +22,15 @@ dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
 
 # Dicionário específico para os diacríticos vocálicos.
 
-dv_c_vogais = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
+dv_hk_diacríticos_vogais = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
                'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
                'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
 
 # Listas para especificidades do Devanagari.
 
-dv_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_hk_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
 
-dv_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
+dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
                  'च', 'छ', 'ज', 'झ', 'ञ',
                  'ट', 'ठ', 'ड', 'ढ', 'ण',
                  'त', 'थ', 'द', 'ध', 'न',
@@ -38,8 +38,8 @@ dv_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
                  'य', 'र', 'ल', 'व',
                  'श', 'ष', 'स', 'ह']
 
-dv_diacriticos = ['ं', 'ः', 'ऽ']
-dv_pontuacao = ['।', '।।']
+dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
+dv_hk_pontuacao = ['।', '।।']
 
 
 # Função responsável pela conversão.
@@ -54,22 +54,22 @@ def conversor(entrada):
     for i in range(len(entrada)):
         c = entrada[i]
 
-        if c not in dv_hk_unicode.keys() and c not in dv_vogais:
+        if c not in dv_hk_unicode.keys() and c not in dv_hk_vogais:
             saida.append(c)
             continue
 
         if i == len(entrada)-2:
             break
 
-        if c not in dv_hk_unicode and c in dv_vogais:
-            saida.append(dv_c_vogais[c])
-        elif c in dv_consoantes:
-            if entrada[i + 1] in dv_c_vogais:
+        if c not in dv_hk_unicode and c in dv_hk_vogais:
+            saida.append(dv_hk_diacríticos_vogais[c])
+        elif c in dv_hk_consoantes:
+            if entrada[i + 1] in dv_hk_diacríticos_vogais:
                 saida.append(dv_hk_unicode[c])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_consoantes:
+            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_hk_consoantes:
                 saida.append(dv_hk_unicode[c])
                 saida.append('a')
-            elif entrada[i + 1] in dv_diacriticos or entrada[i + 1] in dv_pontuacao:
+            elif entrada[i + 1] in dv_hk_diacriticos or entrada[i + 1] in dv_hk_pontuacao:
                 saida.append(dv_hk_unicode[c])
                 saida.append('a')
             else:
