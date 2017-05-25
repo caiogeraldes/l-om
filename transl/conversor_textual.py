@@ -2,7 +2,7 @@ import hk_dv, iast_dv, hk_iast, iast_hk, dv_hk, dv_iast, checktranslit
 
 
 def conversor_texto(texto, tipo_entrada='Iast', tipo_saida="Devanagari"):
-    """Recebe (str, str) ==> .txt"""
+    """Recebe (str, str) ==> .txt """
     entrada = open("%s.txt" % texto, mode='r')
     linhas = entrada.readlines()
     saida = open("%s_saida.txt" % texto, mode="x")
