@@ -171,6 +171,21 @@ dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
 dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
 dv_hk_pontuacao = ['।', '।।']
 
+'''Dicionário para IAST >> HK'''
+iast_hk_unicode = {'i': 'i', 'p': 'p', "'": "'",
+                   'u': 'u', 'ś': 'z', 'k': 'k',
+                   'ñ': 'J', 'n': 'n', 't': 't',
+                   'r': 'r', 'e': 'e', ' ': ' ',
+                   'o': 'o', 'ā': 'A', 'ḥ': 'H',
+                   'm': 'm', 'a': 'a', 'c': 'c',
+                   'ḍ': 'D', 'ū': 'U', '।': '||',
+                   'h': 'h', 'b': 'b', 'j': 'j',
+                   'ṅ': 'G', 'g': 'g', 'l': 'l',
+                   'ṇ': 'N', 'd': 'd', 'ṃ': 'M',
+                   'y': 'y', 'v': 'v', 'ṣ': 'S',
+                   'ṛ': 'R', 'ī': 'I', 'ḷ': 'lR',
+                   's': 's', 'ṭ': 'T'}
+
 def hkdv(entrada):
 
     '''
@@ -456,7 +471,13 @@ def iasthk(entrada):
     :return: 
     '''
 
-    if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
     saida = []
-    return None
+    for letra in entrada:
+        if letra not in iast_hk_unicode:
+            saida.append(letra)
+        else:
+            saida.append(letra(iast_hk_unicode[letra]))
+
+    saida = ''.join(saida)
+    saida = saida.strip()
+    return saida
