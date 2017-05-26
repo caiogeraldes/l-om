@@ -130,16 +130,16 @@ dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
                    'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                    'प': 'p', 'ं': 'ṃ', 'र': 'r'}
 dv_iast_diacriticos_vogais = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
-               'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
-               'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
+                              'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
+                              'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
 dv_iast_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
 dv_iast_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
-                 'च', 'छ', 'ज', 'झ', 'ञ',
-                 'ट', 'ठ', 'ड', 'ढ', 'ण',
-                 'त', 'थ', 'द', 'ध', 'न',
-                 'प', 'फ', 'ब', 'भ', 'म',
-                 'य', 'र', 'ल', 'व',
-                 'श', 'ष', 'स', 'ह']
+                      'च', 'छ', 'ज', 'झ', 'ञ',
+                      'ट', 'ठ', 'ड', 'ढ', 'ण',
+                      'त', 'थ', 'द', 'ध', 'न',
+                      'प', 'फ', 'ब', 'भ', 'म',
+                      'य', 'र', 'ल', 'व',
+                      'श', 'ष', 'स', 'ह']
 dv_iast_diacriticos = ['ं', 'ः', 'ऽ']
 dv_iast_pontuacao = ['।', '।।']
 
@@ -158,16 +158,16 @@ dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                  'प': 'p', 'ं': 'M', 'र': 'r'}
 dv_hk_diacríticos_vogais = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
-               'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
-               'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
+                            'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
+                            'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
 dv_hk_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
 dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
-                 'च', 'छ', 'ज', 'झ', 'ञ',
-                 'ट', 'ठ', 'ड', 'ढ', 'ण',
-                 'त', 'थ', 'द', 'ध', 'न',
-                 'प', 'फ', 'ब', 'भ', 'म',
-                 'य', 'र', 'ल', 'व',
-                 'श', 'ष', 'स', 'ह']
+                    'च', 'छ', 'ज', 'झ', 'ञ',
+                    'ट', 'ठ', 'ड', 'ढ', 'ण',
+                    'त', 'थ', 'द', 'ध', 'न',
+                    'प', 'फ', 'ब', 'भ', 'म',
+                    'य', 'र', 'ल', 'व',
+                    'श', 'ष', 'स', 'ह']
 dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
 dv_hk_pontuacao = ['।', '।।']
 
@@ -186,15 +186,16 @@ iast_hk_unicode = {'i': 'i', 'p': 'p', "'": "'",
                    'ṛ': 'R', 'ī': 'I', 'ḷ': 'lR',
                    's': 's', 'ṭ': 'T'}
 
+
 def hkdv(entrada):
 
-    '''
+    """
     :param entrada: str
     :return: str
-    '''
+    """
 
     if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
+        entrada = entrada.center(len(entrada)+2)
     saida = []
     i = -1
     # Dicionário de correspondências HK>>DV
@@ -277,13 +278,13 @@ def hkdv(entrada):
 
 def hkiast(entrada):
 
-    '''
+    """
     :param entrada: str
     :return: str
-    '''
+    """
 
     if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
+        entrada = entrada.center(len(entrada)+2)
     saida = []
 
     for i in range(len(entrada)):
@@ -306,13 +307,13 @@ def hkiast(entrada):
 
 def iastdv(entrada):
 
-    '''
+    """
     :param entrada: str 
     :return: str 
-    '''
+    """
 
     if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
+        entrada = entrada.center(len(entrada)+2)
     saida = []
     i = -1
 
@@ -371,12 +372,13 @@ def iastdv(entrada):
 
 def dviast(entrada):
 
-    '''
+    """
     :param entrada: str
     :return: str
-    '''
+    """
 
-    entrada = "%s " % entrada
+    if entrada[-1] != ' ':
+        entrada = entrada.center(len(entrada)+2)
     saida = []
 
     for i in range(len(entrada)):
@@ -419,15 +421,15 @@ def dviast(entrada):
 
 def dvhk(entrada):
 
-    '''
+    """
     :param entrada: 
     :return: 
-    '''
+    """
 
     if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
-
+        entrada = entrada.center(len(entrada)+2)
     saida = []
+
     for i in range(len(entrada)):
         c = entrada[i]
 
@@ -468,10 +470,10 @@ def dvhk(entrada):
 
 def iasthk(entrada):
 
-    '''
+    """
     :param entrada: 
     :return: 
-    '''
+    """
 
     saida = []
     for letra in entrada:
