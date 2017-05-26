@@ -380,39 +380,39 @@ def dviast(entrada):
     if entrada[-1] != ' ':
         entrada = entrada.center(len(entrada)+2)
     saida = []
+    i = -1
 
-    for i in range(len(entrada)):
-        c = entrada[i]
-
-        if c not in dv_iast_unicode.keys() and c not in dv_iast_vogais:
-            saida.append(c)
+    for letra in entrada:
+        i += 1
+        if letra not in dv_iast_unicode.keys() and letra not in dv_iast_vogais:
+            saida.append(letra)
             continue
 
         if i == len(entrada)-2:
             break
 
-        if c not in dv_iast_unicode and c in dv_iast_vogais:
-            saida.append(dv_iast_diacriticos_vogais[c])
-        elif c in dv_iast_consoantes:
+        if letra not in dv_iast_unicode and letra in dv_iast_vogais:
+            saida.append(dv_iast_diacriticos_vogais[letra])
+        elif letra in dv_iast_consoantes:
             if entrada[i + 1] in dv_iast_diacriticos_vogais:
-                saida.append(dv_iast_unicode[c])
+                saida.append(dv_iast_unicode[letra])
             elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_iast_consoantes:
-                saida.append(dv_iast_unicode[c])
+                saida.append(dv_iast_unicode[letra])
                 saida.append('a')
             elif entrada[i + 1] in dv_iast_diacriticos or entrada[i + 1] in dv_iast_pontuacao:
-                saida.append(dv_iast_unicode[c])
+                saida.append(dv_iast_unicode[letra])
                 saida.append('a')
             else:
                 if entrada[i + 1] == '्':
-                    saida.append(dv_iast_unicode[c])
+                    saida.append(dv_iast_unicode[letra])
                 else:
                     print('epa')
         else:
-            saida.append(dv_iast_unicode[c])
+            saida.append(dv_iast_unicode[letra])
 
-        for c in saida:
-            if c == '्':
-                saida.pop(saida.index(c))
+        for a in saida:
+            if a == '्':
+                saida.pop(saida.index(a))
 
     saida = ''.join(saida)
     saida = saida.strip()
@@ -429,39 +429,39 @@ def dvhk(entrada):
     if entrada[-1] != ' ':
         entrada = entrada.center(len(entrada)+2)
     saida = []
+    i = -1
 
-    for i in range(len(entrada)):
-        c = entrada[i]
-
-        if c not in dv_hk_unicode.keys() and c not in dv_hk_vogais:
-            saida.append(c)
+    for letra in entrada:
+        i += 1
+        if letra not in dv_hk_unicode.keys() and letra not in dv_hk_vogais:
+            saida.append(letra)
             continue
 
         if i == len(entrada)-2:
             break
 
-        if c not in dv_hk_unicode and c in dv_hk_vogais:
-            saida.append(dv_hk_diacríticos_vogais[c])
-        elif c in dv_hk_consoantes:
+        if letra not in dv_hk_unicode and letra in dv_hk_vogais:
+            saida.append(dv_hk_diacríticos_vogais[letra])
+        elif letra in dv_hk_consoantes:
             if entrada[i + 1] in dv_hk_diacríticos_vogais:
-                saida.append(dv_hk_unicode[c])
+                saida.append(dv_hk_unicode[letra])
             elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_hk_consoantes:
-                saida.append(dv_hk_unicode[c])
+                saida.append(dv_hk_unicode[letra])
                 saida.append('a')
             elif entrada[i + 1] in dv_hk_diacriticos or entrada[i + 1] in dv_hk_pontuacao:
-                saida.append(dv_hk_unicode[c])
+                saida.append(dv_hk_unicode[letra])
                 saida.append('a')
             else:
                 if entrada[i + 1] == '्':
-                    saida.append(dv_hk_unicode[c])
+                    saida.append(dv_hk_unicode[letra])
                 else:
                     print('epa')
         else:
-            saida.append(dv_hk_unicode[c])
+            saida.append(dv_hk_unicode[letra])
 
-        for c in saida:
-            if c == '्':
-                saida.pop(saida.index(c))
+        for a in saida:
+            if a == '्':
+                saida.pop(saida.index(a))
 
     saida = ''.join(saida)
     saida = saida.strip()
