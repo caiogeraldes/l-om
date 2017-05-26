@@ -35,6 +35,8 @@ hk_dv_consoantes = ['k', 'g', 'G', 'c', 'j', 'J',
 hk_dv_consoantes_especiais = ['G', 'J', 'N', 'n',
                               'm', 'y', 'r', 'l', 'v',
                               'z', 'S', 's']
+hk_dv_diacriticos = ['M', 'H', '\'']
+hk_dv_pontuacao = ['|', '||']
 
 '''Dicionários para HK >> IAST'''
 hk_iast_unicode = {
@@ -199,9 +201,6 @@ def hkdv(entrada):
     saida = []
     i = -1
     # Dicionário de correspondências HK>>DV
-
-    '''diacriticos = ['M', 'H', '\'']
-    pontuacao = ['|', '||']'''
 
     for letra in entrada:
         i += 1
