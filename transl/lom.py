@@ -262,7 +262,8 @@ def hkdv(input_text):
                 elif input_text[i + 1] == 'h' and letter not in hk_dv_consoantes_especiais:
                     output_text.append(hk_dv_unicode['%sh' % letter])
                 elif letter == 'h' and input_text[i - 1] in hk_dv_consoantes:
-                    continue
+                    if input_text[i+1] not in hk_dv_vogais:
+                        output_text.append('\u094D')
                 elif input_text[i + 1] not in hk_dv_vogais:
                     output_text.append(hk_dv_unicode[letter])
                     output_text.append('\u094D')
@@ -356,7 +357,8 @@ def iastdv(input_text):
                     if input_text[i + 1] == 'h' and letter not in iast_dv_consoantes_especiais:
                         output_text.append(iast_dv_unicode['%sh' % letter])
                     elif letter == 'h' and input_text[i - 1] in iast_dv_consoantes:
-                        continue
+                        if input_text[i+1] not in iast_dv_vogais:
+                                output_text.append('\u094D')
                     elif input_text[i + 1] not in iast_dv_vogais:
                         output_text.append(iast_dv_unicode[letter])
                         output_text.append('\u094D')
