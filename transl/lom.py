@@ -19,25 +19,25 @@ hk_dv_unicode = {'M': '\u0902', 'H': '\u0903',
                  'z': '\u0936', 'S': '\u0937', 's': '\u0938', 'h': '\u0939',
                  "'": '\u093D', 'oM': '\u0950', ' ': ' ', '|': '\u0964', '||': '\u0964'
                  }
-hk_dv_diacriticos_vogais = {'A': '\u093E', 'a': '',
-                            'i': '\u093F', 'I': '\u0940',
-                            'u': '\u0941', 'U': '\u0942',
-                            'R': '\u0943', 'RR': '\u0944',
-                            'lR': '\u0962',
-                            'e': '\u0947', 'ai': '\u0948',
-                            'o': '\u094b', 'au': '\u094C'}
-hk_dv_vogais = ['A', 'a', 'i', 'I', 'u', 'U',
+hk_dv_vowel_diacritics = {'A': '\u093E', 'a': '',
+                          'i': '\u093F', 'I': '\u0940',
+                          'u': '\u0941', 'U': '\u0942',
+                          'R': '\u0943', 'RR': '\u0944',
+                          'lR': '\u0962',
+                          'e': '\u0947', 'ai': '\u0948',
+                          'o': '\u094b', 'au': '\u094C'}
+hk_dv_vowels = ['A', 'a', 'i', 'I', 'u', 'U',
                 'R', 'RR',
                 'lR', 'e', 'ai', 'o', 'au']
-hk_dv_consoantes = ['k', 'g', 'G', 'c', 'j', 'J',
+hk_dv_consonants = ['k', 'g', 'G', 'c', 'j', 'J',
                     'T', 'D', 'N', 't', 'd', 'n',
                     'p', 'b', 'm', 'y', 'r', 'l', 'v',
                     'z', 'S', 's', 'h']
-hk_dv_consoantes_especiais = ['G', 'J', 'N', 'n',
-                              'm', 'y', 'r', 'l', 'v',
-                              'z', 'S', 's']
-hk_dv_diacriticos = ['M', 'H', '\'']
-hk_dv_pontuacao = ['|', '||']
+hk_dv_special_consonants = ['G', 'J', 'N', 'n',
+                            'm', 'y', 'r', 'l', 'v',
+                            'z', 'S', 's']
+hk_dv_diacritics = ['M', 'H', '\'']
+hk_dv_punctuation = ['|', '||']
 
 '''Dictionaries for HK >> IAST'''
 hk_iast_unicode = {
@@ -100,23 +100,23 @@ iast_dv_unicode = {'ṃ': '\u0902', 'ḥ': '\u0903',
                    'ś': '\u0936', 'ṣ': '\u0937', 's': '\u0938', 'h': '\u0939',
                    "'": '\u093D', 'oṃ': '\u0950', ' ': ' ', '|': '\u0964', '||': '\u0964'
                    }
-iast_dv_diacríticos_vogais = {'ā': '\u093E', 'a': '',
-                              'i': '\u093F', 'ī': '\u0940',
-                              'u': '\u0941', 'ū': '\u0942',
-                              'ṛ': '\u0943', 'ṝ': '\u0944',
-                              'ḷ': '\u0962',
-                              'e': '\u0947', 'ai': '\u0948',
-                              'o': '\u094b', 'au': '\u094C'}
-iast_dv_vogais = ['ā', 'a', 'i', 'ī', 'u', 'ū', 'ṛ', 'ṝ', 'ḷ', 'e', 'ai', 'o', 'au']
-iast_dv_consoantes = ['k', 'g', 'ṅ', 'c', 'j', 'ñ',
+iast_dv_vowel_diacritics = {'ā': '\u093E', 'a': '',
+                            'i': '\u093F', 'ī': '\u0940',
+                            'u': '\u0941', 'ū': '\u0942',
+                            'ṛ': '\u0943', 'ṝ': '\u0944',
+                            'ḷ': '\u0962',
+                            'e': '\u0947', 'ai': '\u0948',
+                            'o': '\u094b', 'au': '\u094C'}
+iast_dv_vowels = ['ā', 'a', 'i', 'ī', 'u', 'ū', 'ṛ', 'ṝ', 'ḷ', 'e', 'ai', 'o', 'au']
+iast_dv_consonants = ['k', 'g', 'ṅ', 'c', 'j', 'ñ',
                       'ṭ', 'ḍ', 'ṇ', 't', 'd', 'n',
                       'p', 'b', 'm', 'y', 'r', 'l', 'v',
                       'ś', 'ṣ', 's', 'h']
-iast_dv_consoantes_especiais = ['ṅ', 'ñ', 'ṇ', 'n',
-                                'm', 'y', 'r', 'l', 'v',
-                                'ś', 'ṣ', 's']
-iast_dv_diacriticos = ['ṃ', 'ḥ', '\'']
-iast_dv_pontuação = ['|', '||']
+iast_dv_special_consonants = ['ṅ', 'ñ', 'ṇ', 'n',
+                              'm', 'y', 'r', 'l', 'v',
+                              'ś', 'ṣ', 's']
+iast_dv_diacritics = ['ṃ', 'ḥ', '\'']
+iast_dv_punctuation = ['|', '||']
 
 '''Dictionaries for DV >> IAST'''
 dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
@@ -132,19 +132,19 @@ dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
                    'ऌ': 'ḷ', 'य': 'y', '।': '|', 'फ': 'ph',
                    'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                    'प': 'p', 'ं': 'ṃ', 'र': 'r'}
-dv_iast_diacriticos_vogais = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
-                              'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
-                              'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
-dv_iast_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
-dv_iast_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
+dv_iast_vowel_diacritics = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
+                            'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
+                            'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
+dv_iast_vowels = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_iast_consonants = ['क', 'ख', 'ग', 'घ', 'ङ',
                       'च', 'छ', 'ज', 'झ', 'ञ',
                       'ट', 'ठ', 'ड', 'ढ', 'ण',
                       'त', 'थ', 'द', 'ध', 'न',
                       'प', 'फ', 'ब', 'भ', 'म',
                       'य', 'र', 'ल', 'व',
                       'श', 'ष', 'स', 'ह']
-dv_iast_diacriticos = ['ं', 'ः', 'ऽ']
-dv_iast_pontuacao = ['।', '।।']
+dv_iast_diacritics = ['ं', 'ः', 'ऽ']
+dv_iast_punctuation = ['।', '।।']
 
 '''Dictionaries for DV >> HK'''
 dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
@@ -160,19 +160,19 @@ dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'ऌ': 'lR', 'य': 'y', '।': '|', 'फ': 'ph',
                  'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                  'प': 'p', 'ं': 'M', 'र': 'r'}
-dv_hk_diacríticos_vogais = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
-                            'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
-                            'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
-dv_hk_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
-dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
+dv_hk_vowel_diacritics = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
+                          'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
+                          'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
+dv_hk_vowels = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_hk_consonants = ['क', 'ख', 'ग', 'घ', 'ङ',
                     'च', 'छ', 'ज', 'झ', 'ञ',
                     'ट', 'ठ', 'ड', 'ढ', 'ण',
                     'त', 'थ', 'द', 'ध', 'न',
                     'प', 'फ', 'ब', 'भ', 'म',
                     'य', 'र', 'ल', 'व',
                     'श', 'ष', 'स', 'ह']
-dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
-dv_hk_pontuacao = ['।', '।।']
+dv_hk_diacritics = ['ं', 'ः', 'ऽ']
+dv_hk_punctuation = ['।', '।।']
 
 '''Dictionary for IAST >> HK'''
 iast_hk_unicode = {'i': 'i', 'p': 'p', "'": "'",
@@ -201,7 +201,6 @@ def hkdv(input_text):
         input_text = input_text.center(len(input_text) + 2)
     output_text = []
     i = -1
-    # Dictionarie de correspondências HK>>DV
 
     for letter in input_text:
         i += 1
@@ -210,20 +209,20 @@ def hkdv(input_text):
         elif letter not in hk_dv_unicode:
             output_text.append(letter)
         else:
-            if letter in hk_dv_vogais:
+            if letter in hk_dv_vowels:
                 if letter == 'a':
                     if input_text[i + 1] == 'i':
-                        if input_text[i - 1] in hk_dv_consoantes:
-                            output_text.append(hk_dv_diacriticos_vogais['ai'])
+                        if input_text[i - 1] in hk_dv_consonants:
+                            output_text.append(hk_dv_vowel_diacritics['ai'])
                         else:
                             output_text.append(hk_dv_unicode['ai'])
                     elif input_text[i + 1] == 'u':
-                        if input_text[i - 1] in hk_dv_consoantes:
-                            output_text.append(hk_dv_diacriticos_vogais['au'])
+                        if input_text[i - 1] in hk_dv_consonants:
+                            output_text.append(hk_dv_vowel_diacritics['au'])
                         else:
                             output_text.append(hk_dv_unicode['au'])
                     else:
-                        if input_text[i - 1] in hk_dv_consoantes:
+                        if input_text[i - 1] in hk_dv_consonants:
                             output_text.append('')
                         else:
                             output_text.append(hk_dv_unicode[letter])
@@ -231,40 +230,40 @@ def hkdv(input_text):
                     if input_text[i - 1] == 'a':
                         continue
                     else:
-                        if input_text[i - 1] in hk_dv_consoantes:
-                            output_text.append(hk_dv_diacriticos_vogais[letter])
+                        if input_text[i - 1] in hk_dv_consonants:
+                            output_text.append(hk_dv_vowel_diacritics[letter])
                         else:
                             output_text.append(hk_dv_unicode[letter])
                 elif letter == 'R':
                     if input_text[i + 1] == 'R':
-                        if input_text[i - 1] in hk_dv_consoantes:
-                            output_text.append(hk_dv_diacriticos_vogais['RR'])
+                        if input_text[i - 1] in hk_dv_consonants:
+                            output_text.append(hk_dv_vowel_diacritics['RR'])
                         else:
                             output_text.append(hk_dv_unicode['RR'])
                     elif input_text[i - 1] == 'R' or input_text[i - 1] == 'l':
                         continue
                     else:
-                        if input_text[i - 1] in hk_dv_consoantes:
-                            output_text.append(hk_dv_diacriticos_vogais[letter])
+                        if input_text[i - 1] in hk_dv_consonants:
+                            output_text.append(hk_dv_vowel_diacritics[letter])
                         else:
                             output_text.append(hk_dv_unicode[letter])
                 else:
-                    if input_text[i - 1] in hk_dv_consoantes:
-                        output_text.append(hk_dv_diacriticos_vogais[letter])
+                    if input_text[i - 1] in hk_dv_consonants:
+                        output_text.append(hk_dv_vowel_diacritics[letter])
                     else:
                         output_text.append(hk_dv_unicode[letter])
-            elif letter in hk_dv_consoantes:
+            elif letter in hk_dv_consonants:
                 if letter == 'l' and input_text[i + 1] == 'R':
-                    if input_text[i - 1] in hk_dv_consoantes:
-                        output_text.append(hk_dv_diacriticos_vogais['lR'])
+                    if input_text[i - 1] in hk_dv_consonants:
+                        output_text.append(hk_dv_vowel_diacritics['lR'])
                     else:
                         output_text.append(hk_dv_unicode['lR'])
-                elif input_text[i + 1] == 'h' and letter not in hk_dv_consoantes_especiais:
+                elif input_text[i + 1] == 'h' and letter not in hk_dv_special_consonants:
                     output_text.append(hk_dv_unicode['%sh' % letter])
-                elif letter == 'h' and input_text[i - 1] in hk_dv_consoantes:
-                    if input_text[i+1] not in hk_dv_vogais:
+                elif letter == 'h' and input_text[i - 1] in hk_dv_consonants:
+                    if input_text[i+1] not in hk_dv_vowels:
                         output_text.append('\u094D')
-                elif input_text[i + 1] not in hk_dv_vogais:
+                elif input_text[i + 1] not in hk_dv_vowels:
                     output_text.append(hk_dv_unicode[letter])
                     output_text.append('\u094D')
                 else:
@@ -323,20 +322,20 @@ def iastdv(input_text):
             if letter not in iast_dv_unicode:
                 output_text.append(letter)
             else:
-                if letter in iast_dv_vogais:
+                if letter in iast_dv_vowels:
                     if letter == 'a':
                         if input_text[i + 1] == 'i':
-                            if input_text[i - 1] in iast_dv_consoantes:
-                                output_text.append(iast_dv_diacríticos_vogais['ai'])
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics['ai'])
                             else:
                                 output_text.append(iast_dv_unicode['ai'])
                         elif input_text[i + 1] == 'u':
-                            if input_text[i - 1] in iast_dv_consoantes:
-                                output_text.append(iast_dv_diacríticos_vogais['au'])
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics['au'])
                             else:
                                 output_text.append(iast_dv_unicode['au'])
                         else:
-                            if input_text[i - 1] in iast_dv_consoantes:
+                            if input_text[i - 1] in iast_dv_consonants:
                                 output_text.append('')
                             else:
                                 output_text.append(iast_dv_unicode[letter])
@@ -344,22 +343,22 @@ def iastdv(input_text):
                         if input_text[i - 1] == 'a':
                             continue
                         else:
-                            if input_text[i - 1] in iast_dv_consoantes:
-                                output_text.append(iast_dv_diacríticos_vogais[letter])
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics[letter])
                             else:
                                 output_text.append(iast_dv_unicode[letter])
                     else:
-                        if input_text[i - 1] in iast_dv_consoantes:
-                            output_text.append(iast_dv_diacríticos_vogais[letter])
+                        if input_text[i - 1] in iast_dv_consonants:
+                            output_text.append(iast_dv_vowel_diacritics[letter])
                         else:
                             output_text.append(iast_dv_unicode[letter])
-                elif letter in iast_dv_consoantes:
-                    if input_text[i + 1] == 'h' and letter not in iast_dv_consoantes_especiais:
+                elif letter in iast_dv_consonants:
+                    if input_text[i + 1] == 'h' and letter not in iast_dv_special_consonants:
                         output_text.append(iast_dv_unicode['%sh' % letter])
-                    elif letter == 'h' and input_text[i - 1] in iast_dv_consoantes:
-                        if input_text[i+1] not in iast_dv_vogais:
+                    elif letter == 'h' and input_text[i - 1] in iast_dv_consonants:
+                        if input_text[i+1] not in iast_dv_vowels:
                                 output_text.append('\u094D')
-                    elif input_text[i + 1] not in iast_dv_vogais:
+                    elif input_text[i + 1] not in iast_dv_vowels:
                         output_text.append(iast_dv_unicode[letter])
                         output_text.append('\u094D')
                     else:
@@ -384,33 +383,33 @@ def dviast(input_text):
     output_text = []
     i = -1
 
-    for letra in input_text:
+    for letter in input_text:
         i += 1
-        if letra not in dv_iast_unicode.keys() and letra not in dv_iast_vogais:
-            output_text.append(letra)
+        if letter not in dv_iast_unicode.keys() and letter not in dv_iast_vowels:
+            output_text.append(letter)
             continue
 
         if i == len(input_text)-2:
             break
 
-        if letra not in dv_iast_unicode and letra in dv_iast_vogais:
-            output_text.append(dv_iast_diacriticos_vogais[letra])
-        elif letra in dv_iast_consoantes:
-            if input_text[i + 1] in dv_iast_diacriticos_vogais:
-                output_text.append(dv_iast_unicode[letra])
-            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_iast_consoantes:
-                output_text.append(dv_iast_unicode[letra])
+        if letter not in dv_iast_unicode and letter in dv_iast_vowels:
+            output_text.append(dv_iast_vowel_diacritics[letter])
+        elif letter in dv_iast_consonants:
+            if input_text[i + 1] in dv_iast_vowel_diacritics:
+                output_text.append(dv_iast_unicode[letter])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_iast_consonants:
+                output_text.append(dv_iast_unicode[letter])
                 output_text.append('a')
-            elif input_text[i + 1] in dv_iast_diacriticos or input_text[i + 1] in dv_iast_pontuacao:
-                output_text.append(dv_iast_unicode[letra])
+            elif input_text[i + 1] in dv_iast_diacritics or input_text[i + 1] in dv_iast_punctuation:
+                output_text.append(dv_iast_unicode[letter])
                 output_text.append('a')
             else:
                 if input_text[i + 1] == '्':
-                    output_text.append(dv_iast_unicode[letra])
+                    output_text.append(dv_iast_unicode[letter])
                 else:
                     print('epa')
         else:
-            output_text.append(dv_iast_unicode[letra])
+            output_text.append(dv_iast_unicode[letter])
 
         for a in output_text:
             if a == '्':
@@ -433,33 +432,33 @@ def dvhk(input_text):
     output_text = []
     i = -1
 
-    for letra in input_text:
+    for letter in input_text:
         i += 1
-        if letra not in dv_hk_unicode.keys() and letra not in dv_hk_vogais:
-            output_text.append(letra)
+        if letter not in dv_hk_unicode.keys() and letter not in dv_hk_vowels:
+            output_text.append(letter)
             continue
 
         if i == len(input_text)-2:
             break
 
-        if letra not in dv_hk_unicode and letra in dv_hk_vogais:
-            output_text.append(dv_hk_diacríticos_vogais[letra])
-        elif letra in dv_hk_consoantes:
-            if input_text[i + 1] in dv_hk_diacríticos_vogais:
-                output_text.append(dv_hk_unicode[letra])
-            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_hk_consoantes:
-                output_text.append(dv_hk_unicode[letra])
+        if letter not in dv_hk_unicode and letter in dv_hk_vowels:
+            output_text.append(dv_hk_vowel_diacritics[letter])
+        elif letter in dv_hk_consonants:
+            if input_text[i + 1] in dv_hk_vowel_diacritics:
+                output_text.append(dv_hk_unicode[letter])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_hk_consonants:
+                output_text.append(dv_hk_unicode[letter])
                 output_text.append('a')
-            elif input_text[i + 1] in dv_hk_diacriticos or input_text[i + 1] in dv_hk_pontuacao:
-                output_text.append(dv_hk_unicode[letra])
+            elif input_text[i + 1] in dv_hk_diacritics or input_text[i + 1] in dv_hk_punctuation:
+                output_text.append(dv_hk_unicode[letter])
                 output_text.append('a')
             else:
                 if input_text[i + 1] == '्':
-                    output_text.append(dv_hk_unicode[letra])
+                    output_text.append(dv_hk_unicode[letter])
                 else:
                     print('epa')
         else:
-            output_text.append(dv_hk_unicode[letra])
+            output_text.append(dv_hk_unicode[letter])
 
         for a in output_text:
             if a == '्':
@@ -478,11 +477,11 @@ def iasthk(input_text):
     """
 
     output_text = []
-    for letra in input_text:
-        if letra not in iast_hk_unicode:
-            output_text.append(letra)
+    for letter in input_text:
+        if letter not in iast_hk_unicode:
+            output_text.append(letter)
         else:
-            output_text.append(letra(iast_hk_unicode[letra]))
+            output_text.append(letter(iast_hk_unicode[letter]))
 
     output_text = ''.join(output_text)
     output_text = output_text.strip()
