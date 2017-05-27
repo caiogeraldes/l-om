@@ -20,7 +20,9 @@ Although I suppose it's quite useless, there are also the methods:
 
 Dealing with strings proved to be quite hard when I was starting (when I first coded the L-oṃ, I was leaning python for a couple of weeks), so many of the solutions here are -excuse my portuguese- "gambiarras" -- and I guess "hack" translates that.
 Basically, for each way of moving either the sanskrit devanāgarī to a roman-script, either from IAST/Harvard-Kyoto to the itself nāgarī, I build a dictionary correlating the input system to the output system in its Unicode. The script breaks the input string in a list, walks it item by item and, while checking its environment, chooses from a set of dictionaries which character to append in a output list that is then joined into a string and finally printet or saved into a .txt. Which means that most of the code is dedicated to if-statements checking if there's or not a vowel or consonant before the letter being transliterated, if there must be a virāma etc.
+
 At the first moment, I made one script for each way of converting, so there are 6 individual modules with the proper dictionaries and functions. I kept them updated with my new additions. But the lom.py script is working fine.
+
 Finally there is a textual_converter.py file which converts any text file (usually .txt). It still interacts only by terminal with the user. 
 
 ## GUI module

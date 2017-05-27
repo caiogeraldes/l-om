@@ -109,8 +109,7 @@ class Janela(Gtk.Window):
 
     # Define a abertura da janela 'Sobre'
 
-    @staticmethod
-    def sobre_clicked():
+    def sobre_clicked(self, widget):
         sobre = Gtk.AboutDialog()
         sobre.set_border_width(20)
         sobre.set_program_name('Transliterador L-Oṃ')
@@ -141,8 +140,7 @@ class Janela(Gtk.Window):
         sobre.run()
         sobre.destroy()
 
-    @staticmethod
-    def erro_translit(metodo_esperado, metodo_obtido):
+    def erro_translit(self, metodo_esperado, metodo_obtido):
         t_erro = Gtk.MessageDialog()
         t_erro.add_buttons(Gtk.STOCK_OK, Gtk.ResponseType.OK)
         t_erro.set_title("Erro no sistema de transliteração")
@@ -155,7 +153,7 @@ class Janela(Gtk.Window):
 
     # Engine
 
-    def conversor(self):
+    def conversor(self, widget):
         entrada = self.texto.get_text()
         metodo_checagem = checktranslit.checker(entrada)
         saida = None
