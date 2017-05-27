@@ -5,6 +5,23 @@ Module of script conversion between systems of representation of Classical Sansk
 Harvard-Kyoto and Devanagari itself.
 """
 
+"""
+    Copyright (c) 2017 Caio Borges.
+    This file is part of L-om.
+    L-om is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 '''Dictionaries for HK >> Dv'''
 hk_dv_unicode = {'M': '\u0902', 'H': '\u0903',
                  'a': '\u0905', 'A': '\u0906', 'i': '\u0907', 'I': '\u0908',
