@@ -261,7 +261,7 @@ def hkdv(input_text):
                         output_text.append(hk_dv_unicode['lR'])
                 elif input_text[i + 1] == 'h' and letter not in hk_dv_consoantes_especiais:
                     output_text.append(hk_dv_unicode['%sh' % letter])
-                elif input_text[i] == 'h' and input_text[i - 1] in hk_dv_consoantes:
+                elif letter == 'h' and input_text[i - 1] in hk_dv_consoantes:
                     continue
                 elif input_text[i + 1] not in hk_dv_vogais:
                     output_text.append(hk_dv_unicode[letter])

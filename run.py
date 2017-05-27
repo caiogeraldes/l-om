@@ -5,7 +5,8 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
-from transl import hk_dv, iast_dv, hk_iast, dv_iast, checktranslit
+from transl import checktranslit
+from transl import lom
 
 
 class Janela(Gtk.Window):
@@ -138,24 +139,24 @@ class Janela(Gtk.Window):
         saida = None
         if self.hk_button.get_active():
 
-            if metodo_checagem == 'Harvard-kyoto' or metodo_checagem == None:
+            if metodo_checagem == 'Harvard-kyoto' or metodo_checagem is None:
                 pass
             else:
                 self.erro_translit('Harvard-kyoto', metodo_checagem)
 
             if self.dv_button.get_active():
-                saida = hk_dv.conversor(entrada)
+                saida = lom.hkdv(entrada)
             elif self.iast_button2.get_active():
-                saida = hk_iast.conversor(entrada)
+                saida = lom.hkiast(entrada)
         elif self.iast_button.get_active():
 
-            if metodo_checagem == 'Iast' or metodo_checagem == None:
+            if metodo_checagem == 'Iast' or metodo_checagem is None:
                 pass
             else:
                 self.erro_translit("Iast", metodo_checagem)
 
             if self.dv_button.get_active():
-                saida = iast_dv.conversor(entrada)
+                saida = lom.iastdv(entrada)
             elif self.iast_button2.get_active():
                 saida = "Iast >> Iast ?"
         elif self.dv_button2.get_active():
@@ -166,7 +167,7 @@ class Janela(Gtk.Window):
                 self.erro_translit('Devanagari', metodo_checagem)
 
             if self.iast_button2.get_active():
-                saida = dv_iast.conversor(entrada)
+                saida = lom.dviast(entrada)
             elif self.dv_button.get_active():
                 saida = "Devanāgarī >> Devanāgarī ?"
         self.saida.set_text(saida)
