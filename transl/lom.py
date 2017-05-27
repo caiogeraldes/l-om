@@ -46,12 +46,15 @@ hk_dv_vowel_diacritics = {'A': '\u093E', 'a': '',
 hk_dv_vowels = ['A', 'a', 'i', 'I', 'u', 'U',
                 'R', 'RR',
                 'lR', 'e', 'ai', 'o', 'au']
-hk_dv_consonants = ['k', 'g', 'G', 'c', 'j', 'J',
-                    'T', 'D', 'N', 't', 'd', 'n',
-                    'p', 'b', 'm', 'y', 'r', 'l', 'v',
+hk_dv_consonants = ['k', 'g', 'G',
+                    'c', 'j', 'J',
+                    'T', 'D', 'N',
+                    't', 'd', 'n',
+                    'p', 'b', 'm',
+                    'y', 'r', 'l', 'v',
                     'z', 'S', 's', 'h']
-hk_dv_special_consonants = ['G', 'J', 'N', 'n',
-                            'm', 'y', 'r', 'l', 'v',
+hk_dv_special_consonants = ['G', 'J', 'N', 'n', 'm',
+                            'y', 'r', 'l', 'v',
                             'z', 'S', 's']
 hk_dv_diacritics = ['M', 'H', '\'']
 hk_dv_punctuation = ['|', '||']
@@ -95,12 +98,15 @@ iast_dv_vowel_diacritics = {'ā': '\u093E', 'a': '',
                             'e': '\u0947', 'ai': '\u0948',
                             'o': '\u094b', 'au': '\u094C'}
 iast_dv_vowels = ['ā', 'a', 'i', 'ī', 'u', 'ū', 'ṛ', 'ṝ', 'ḷ', 'e', 'ai', 'o', 'au']
-iast_dv_consonants = ['k', 'g', 'ṅ', 'c', 'j', 'ñ',
-                      'ṭ', 'ḍ', 'ṇ', 't', 'd', 'n',
-                      'p', 'b', 'm', 'y', 'r', 'l', 'v',
+iast_dv_consonants = ['k', 'g', 'ṅ',
+                      'c', 'j', 'ñ',
+                      'ṭ', 'ḍ', 'ṇ',
+                      't', 'd', 'n',
+                      'p', 'b', 'm',
+                      'y', 'r', 'l', 'v',
                       'ś', 'ṣ', 's', 'h']
-iast_dv_special_consonants = ['ṅ', 'ñ', 'ṇ', 'n',
-                              'm', 'y', 'r', 'l', 'v',
+iast_dv_special_consonants = ['ṅ', 'ñ', 'ṇ', 'n', 'm',
+                              'y', 'r', 'l', 'v',
                               'ś', 'ṣ', 's']
 iast_dv_diacritics = ['ṃ', 'ḥ', '\'']
 iast_dv_punctuation = ['|', '||']

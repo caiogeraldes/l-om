@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Transliterador  Devanāgarī >>> IAST
-# Escrito por Caio Borges <caioaguida@gmail.com>
+"""
+This module holds a converting script for Devanāgarī >>> IAST.
+"""
 
-# Dicionário com correspondências entre a entrada em Devanāgarī Unicode e saída em IAST.
+"""
+    Copyright (c) 2017 Caio Borges.
+    This file is part of L-om.
+    L-om is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+'''Dictionaries for DV >> IAST'''
 dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
                    'श': 'ś', 'द': 'd', 'उ': 'u', 'ग': 'g',
                    'ज': 'j', 'थ': 'th', 'अ': 'a', 'आ': 'ā',
@@ -19,73 +36,68 @@ dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
                    'ऌ': 'ḷ', 'य': 'y', '।': '|', 'फ': 'ph',
                    'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                    'प': 'p', 'ं': 'ṃ', 'र': 'r'}
-
-# Dicionário específico para os diacríticos vocálicos.
-
-dv_iast_diacriticos_vogais = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
-               'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
-               'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
-
-# Listas para especificidades do Devanagari.
-
-dv_iast_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
-
-dv_iast_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
-                 'च', 'छ', 'ज', 'झ', 'ञ',
-                 'ट', 'ठ', 'ड', 'ढ', 'ण',
-                 'त', 'थ', 'द', 'ध', 'न',
-                 'प', 'फ', 'ब', 'भ', 'म',
-                 'य', 'र', 'ल', 'व',
-                 'श', 'ष', 'स', 'ह']
-
-dv_iast_diacriticos = ['ं', 'ः', 'ऽ']
-dv_iast_pontuacao = ['।', '।।']
+dv_iast_vowel_diacritics = {'ी': 'ī', 'े': 'e', 'ॄ': 'ṝ', 'ृ': 'ṛ',
+                            'ै': 'ai', 'ॢ': 'ḷ', 'ो': 'o', 'ौ': 'au',
+                            'ा': 'ā', 'ि': 'i', 'ु': 'u', 'ू': 'ū'}
+dv_iast_vowels = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_iast_consonants = ['क', 'ख', 'ग', 'घ', 'ङ',
+                      'च', 'छ', 'ज', 'झ', 'ञ',
+                      'ट', 'ठ', 'ड', 'ढ', 'ण',
+                      'त', 'थ', 'द', 'ध', 'न',
+                      'प', 'फ', 'ब', 'भ', 'म',
+                      'य', 'र', 'ल', 'व',
+                      'श', 'ष', 'स', 'ह']
+dv_iast_diacritics = ['ं', 'ः', 'ऽ']
+dv_iast_punctuation = ['।', '।।']
 
 
-# Função responsável pela conversão.
+def dviast(input_text):
 
+    """
+    :param input_text: Text to be transliterated, written in Devanagari
+    :return: Text in IAST
+    """
 
-def conversor(entrada):
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
+    i = -1
 
-    entrada = "%s " % entrada
-    saida = []
-
-    for i in range(len(entrada)):
-        c = entrada[i]
-
-        if c not in dv_iast_unicode.keys() and c not in dv_iast_vogais:
-            saida.append(c)
+    for letter in input_text:
+        i += 1
+        if letter not in dv_iast_unicode.keys() and letter not in dv_iast_vowels:
+            output_text.append(letter)
             continue
 
-        if i == len(entrada)-2:
+        if i == len(input_text)-2:
             break
 
-        if c not in dv_iast_unicode and c in dv_iast_vogais:
-            saida.append(dv_iast_diacriticos_vogais[c])
-        elif c in dv_iast_consoantes:
-            if entrada[i + 1] in dv_iast_diacriticos_vogais:
-                saida.append(dv_iast_unicode[c])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_iast_consoantes:
-                saida.append(dv_iast_unicode[c])
-                saida.append('a')
-            elif entrada[i + 1] in dv_iast_diacriticos or entrada[i + 1] in dv_iast_pontuacao:
-                saida.append(dv_iast_unicode[c])
-                saida.append('a')
+        if letter not in dv_iast_unicode and letter in dv_iast_vowels:
+            output_text.append(dv_iast_vowel_diacritics[letter])
+        elif letter in dv_iast_consonants:
+            if input_text[i + 1] in dv_iast_vowel_diacritics:
+                output_text.append(dv_iast_unicode[letter])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_iast_consonants:
+                output_text.append(dv_iast_unicode[letter])
+                output_text.append('a')
+            elif input_text[i + 1] in dv_iast_diacritics or input_text[i + 1] in dv_iast_punctuation:
+                output_text.append(dv_iast_unicode[letter])
+                output_text.append('a')
             else:
-                if entrada[i + 1] == '्':
-                    saida.append(dv_iast_unicode[c])
+                if input_text[i + 1] == '्':
+                    output_text.append(dv_iast_unicode[letter])
                 else:
                     print('epa')
         else:
-            saida.append(dv_iast_unicode[c])
+            output_text.append(dv_iast_unicode[letter])
 
-        for c in saida:
-            if c == '्':
-                saida.pop(saida.index(c))
+        for a in output_text:
+            if a == '्':
+                output_text.pop(output_text.index(a))
 
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 if __name__ == '__main__':
-    conversor(input(">>>"))
+    dviast(input(">>>"))

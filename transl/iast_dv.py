@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""""" Transliterador Harvard-Kyoto >>> Devanāgarī
-Escrito por Caio Borges <caioaguida@gmail.com>"""
+"""
+This module holds a converting script for IAST >>> Devanāgarī.
+"""
 
-# Dicionário com correspondências entre a entrada em alfabeto Latino e a saída em Devanāgarī Unicode.
+"""
+    Copyright (c) 2017 Caio Borges.
+    This file is part of L-om.
+    L-om is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+'''Dictionaries for IAST >> DV'''
 iast_dv_unicode = {'ṃ': '\u0902', 'ḥ': '\u0903',
                    'a': '\u0905', 'ā': '\u0906',
                    'i': '\u0907', 'ī': '\u0908',
@@ -23,87 +40,92 @@ iast_dv_unicode = {'ṃ': '\u0902', 'ḥ': '\u0903',
                    'ś': '\u0936', 'ṣ': '\u0937', 's': '\u0938', 'h': '\u0939',
                    "'": '\u093D', 'oṃ': '\u0950', ' ': ' ', '|': '\u0964', '||': '\u0964'
                    }
-
-# Dicionário específico para os diacríticos vocálicos.
-
-iast_c_vogais = {'ā': '\u093E', 'a': '',
-                 'i': '\u093F', 'ī': '\u0940',
-                 'u': '\u0941', 'ū': '\u0942',
-                 'ṛ': '\u0943', 'ṝ': '\u0944',
-                 'ḷ': '\u0962',
-                 'e': '\u0947', 'ai': '\u0948',
-                 'o': '\u094b', 'au': '\u094C'}
-
-# Listas para especificidades do Devanagari.
-
-iast_vogais = ['ā', 'a', 'i', 'ī', 'u', 'ū', 'ṛ', 'ṝ', 'ḷ', 'e', 'ai', 'o', 'au']
-iast_consoantes = ['k', 'g', 'ṅ', 'c', 'j', 'ñ',
-                   'ṭ', 'ḍ', 'ṇ', 't', 'd', 'n',
-                   'p', 'b', 'm', 'y', 'r', 'l', 'v',
-                   'ś', 'ṣ', 's', 'h']
-c_especiais = ['ṅ', 'ñ', 'ṇ', 'n',
-               'm', 'y', 'r', 'l', 'v',
-               'ś', 'ṣ', 's']
-iast_diacriticos = ['ṃ', 'ḥ', '\'']
-iast = ['|', '||']
+iast_dv_vowel_diacritics = {'ā': '\u093E', 'a': '',
+                            'i': '\u093F', 'ī': '\u0940',
+                            'u': '\u0941', 'ū': '\u0942',
+                            'ṛ': '\u0943', 'ṝ': '\u0944',
+                            'ḷ': '\u0962',
+                            'e': '\u0947', 'ai': '\u0948',
+                            'o': '\u094b', 'au': '\u094C'}
+iast_dv_vowels = ['ā', 'a', 'i', 'ī', 'u', 'ū', 'ṛ', 'ṝ', 'ḷ', 'e', 'ai', 'o', 'au']
+iast_dv_consonants = ['k', 'g', 'ṅ',
+                      'c', 'j', 'ñ',
+                      'ṭ', 'ḍ', 'ṇ',
+                      't', 'd', 'n',
+                      'p', 'b', 'm',
+                      'y', 'r', 'l', 'v',
+                      'ś', 'ṣ', 's', 'h']
+iast_dv_special_consonants = ['ṅ', 'ñ', 'ṇ', 'n', 'm',
+                              'y', 'r', 'l', 'v',
+                              'ś', 'ṣ', 's']
+iast_dv_diacritics = ['ṃ', 'ḥ', '\'']
+iast_dv_punctuation = ['|', '||']
 
 
-def conversor(entrada):
-    entrada = "%s " % entrada
-    saida = []
+def iastdv(input_text):
+
+    """
+    :param input_text: Text to be transliterated, written in IAST.
+    :return: Text in Devanagari.
+    """
+
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
     i = -1
 
-    for letra in entrada:
+    for letter in input_text:
             i += 1
-            if letra not in iast_dv_unicode:
-                saida.append(letra)
+            if letter not in iast_dv_unicode:
+                output_text.append(letter)
             else:
-                if letra in iast_vogais:
-                    if letra == 'a':
-                        if entrada[i + 1] == 'i':
-                            if entrada[i - 1] in iast_consoantes:
-                                saida.append(iast_c_vogais['ai'])
+                if letter in iast_dv_vowels:
+                    if letter == 'a':
+                        if input_text[i + 1] == 'i':
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics['ai'])
                             else:
-                                saida.append(iast_dv_unicode['ai'])
-                        elif entrada[i + 1] == 'u':
-                            if entrada[i - 1] in iast_consoantes:
-                                saida.append(iast_c_vogais['au'])
+                                output_text.append(iast_dv_unicode['ai'])
+                        elif input_text[i + 1] == 'u':
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics['au'])
                             else:
-                                saida.append(iast_dv_unicode['au'])
+                                output_text.append(iast_dv_unicode['au'])
                         else:
-                            if entrada[i - 1] in iast_consoantes:
-                                saida.append('')
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append('')
                             else:
-                                saida.append(iast_dv_unicode[letra])
-                    elif letra == 'i' or letra == 'u':
-                        if entrada[i - 1] == 'a':
+                                output_text.append(iast_dv_unicode[letter])
+                    elif letter == 'i' or letter == 'u':
+                        if input_text[i - 1] == 'a':
                             continue
                         else:
-                            if entrada[i - 1] in iast_consoantes:
-                                saida.append(iast_c_vogais[letra])
+                            if input_text[i - 1] in iast_dv_consonants:
+                                output_text.append(iast_dv_vowel_diacritics[letter])
                             else:
-                                saida.append(iast_dv_unicode[letra])
+                                output_text.append(iast_dv_unicode[letter])
                     else:
-                        if entrada[i - 1] in iast_consoantes:
-                            saida.append(iast_c_vogais[letra])
+                        if input_text[i - 1] in iast_dv_consonants:
+                            output_text.append(iast_dv_vowel_diacritics[letter])
                         else:
-                            saida.append(iast_dv_unicode[letra])
-                elif letra in iast_consoantes:
-                    if entrada[i + 1] == 'h' and letra not in c_especiais:
-                        saida.append(iast_dv_unicode['%sh' % letra])
-                    elif letra == 'h' and entrada[i - 1] in iast_consoantes:
-                        continue
-                    elif entrada[i + 1] not in iast_vogais:
-                        saida.append(iast_dv_unicode[letra])
-                        saida.append('\u094D')
+                            output_text.append(iast_dv_unicode[letter])
+                elif letter in iast_dv_consonants:
+                    if input_text[i + 1] == 'h' and letter not in iast_dv_special_consonants:
+                        output_text.append(iast_dv_unicode['%sh' % letter])
+                    elif letter == 'h' and input_text[i - 1] in iast_dv_consonants:
+                        if input_text[i+1] not in iast_dv_vowels:
+                                output_text.append('\u094D')
+                    elif input_text[i + 1] not in iast_dv_vowels:
+                        output_text.append(iast_dv_unicode[letter])
+                        output_text.append('\u094D')
                     else:
-                        saida.append(iast_dv_unicode[letra])
+                        output_text.append(iast_dv_unicode[letter])
                 else:
-                    saida.append(iast_dv_unicode[letra])
+                    output_text.append(iast_dv_unicode[letter])
 
-    saida = "".join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = "".join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 if __name__ == '__main__':
-    conversor(input(">>>"))
+    iastdv(input(">>>"))

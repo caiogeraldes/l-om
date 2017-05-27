@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+GUI version of the L-om transliteration engine, made mostly for testing and fast conversions.
+"""
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -105,35 +109,53 @@ class Janela(Gtk.Window):
 
     # Define a abertura da janela 'Sobre'
 
-    def sobre_clicked(self, widget):
+    @staticmethod
+    def sobre_clicked():
         sobre = Gtk.AboutDialog()
         sobre.set_border_width(20)
         sobre.set_program_name('Transliterador L-Oṃ')
         sobre.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size('logo/lom.png', 100, 100))
         sobre.set_version('0.4')
-        sobre.set_license('Open Source e tal.')
+        sobre.set_license("""Copyright (c) 2017 Caio Borges.
+                          This file is part of L-om. L-om is free software: you can redistribute it and/or modify 
+                          it under the terms of the GNU General Public License as published by
+                          the Free Software Foundation, either version 3 of the License, or
+                          (at your option) any later version.
+                           
+                          This program is distributed in the hope that it will be useful,
+                          but WITHOUT ANY WARRANTY; without even the implied warranty of
+                          MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                          GNU General Public License for more details.
+                            
+                          You should have received a copy of the GNU General Public License
+                          along with this program.  If not, see <http://www.gnu.org/licenses/>.""")
         sobre.set_comments('Transliterador com os métodos:'
-                          '\n\nHarvard-Kyoto >> Devanāgarī e Iast \nIast >> Devanāgarī\nDevanāgarī >> Iast \n\n'
-                          '~~~ Ainda com alguns bugs com relação ao uso de múltiplas linhas. \n'
-                          'Converte o recuo em um caractere UTF-8, o qual '
-                          'desaparece em editores de texto como Office. ~~~')
-        sobre.set_copyright('\u00A9 Caio Borges Aguida Geraldes, 2017.')
+                           '\n\nHarvard-Kyoto >> Devanāgarī e Iast '
+                           '\nIast >> Devanāgarī\nDevanāgarī >> Iast \n\n'
+                           '~~~ Ainda com alguns bugs com relação ao uso de múltiplas linhas. \n'
+                           'Converte o recuo em um caractere UTF-8, o qual '
+                           'desaparece em editores de texto como Office. ~~~')
+
+        sobre.set_copyright('\u00A9 Caio Borges, 2017.')
         sobre.set_authors(['Caio Borges Aguida Geraldes'])
         sobre.run()
         sobre.destroy()
 
-    def erro_translit(self, metodo_esperado, metodo_obtido):
+    @staticmethod
+    def erro_translit(metodo_esperado, metodo_obtido):
         t_erro = Gtk.MessageDialog()
         t_erro.add_buttons(Gtk.STOCK_OK, Gtk.ResponseType.OK)
         t_erro.set_title("Erro no sistema de transliteração")
         t_erro.set_keep_above(True)
-        t_erro.set_markup("""Eita, o método de transliteração do texto de entrada não corresponde ao método escolhido. \n\tMétodo esperado: %s \n\tMétodo checado: %s. \nA transliteração feita apresentará falhas.""" % (metodo_esperado, metodo_obtido))
+        t_erro.set_markup("""Eita, o método de transliteração do texto de entrada não corresponde ao método escolhido.
+                          \n\tMétodo esperado: %s \n\tMétodo checado: %s. \nA transliteração feita apresentará falhas.
+                          """ % (metodo_esperado, metodo_obtido))
         t_erro.run()
         t_erro.destroy()
 
     # Engine
 
-    def conversor(self, widget):
+    def conversor(self):
         entrada = self.texto.get_text()
         metodo_checagem = checktranslit.checker(entrada)
         saida = None
@@ -177,4 +199,3 @@ if __name__ == '__main__':
         window.connect("delete-event", Gtk.main_quit)
         window.show_all()
         Gtk.main()
-

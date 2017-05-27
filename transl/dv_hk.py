@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-''' 
-Transliterador  Devanāgarī >>> Harvard-Kyoto
-Escrito por Caio Borges <caioaguida@gmail.com>
-Dicionário com correspondências entre a entrada em Devanāgarī Unicode e saída em Harvard Kyoto.
-'''
+"""
+This module holds a converting script for Devanāgarī >>> Harvard-Kyoto.
+"""
+
+"""
+    Copyright (c) 2017 Caio Borges.
+    This file is part of L-om.
+    L-om is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+'''Dictionaries for DV >> HK'''
 dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'श': 'z', 'द': 'd', 'उ': 'u', 'ग': 'g',
                  'ज': 'j', 'थ': 'th', 'अ': 'a', 'आ': 'A',
@@ -19,74 +36,68 @@ dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'ऌ': 'lR', 'य': 'y', '।': '|', 'फ': 'ph',
                  'औ': 'au', 'ल': 'l', 'स': 's', 'भ': 'bh',
                  'प': 'p', 'ं': 'M', 'र': 'r'}
-
-# Dicionário específico para os diacríticos vocálicos.
-
-dv_hk_diacríticos_vogais = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
-               'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
-               'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
-
-# Listas para especificidades do Devanagari.
-
-dv_hk_vogais = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
-
-dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
-                 'च', 'छ', 'ज', 'झ', 'ञ',
-                 'ट', 'ठ', 'ड', 'ढ', 'ण',
-                 'त', 'थ', 'द', 'ध', 'न',
-                 'प', 'फ', 'ब', 'भ', 'म',
-                 'य', 'र', 'ल', 'व',
-                 'श', 'ष', 'स', 'ह']
-
-dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
-dv_hk_pontuacao = ['।', '।।']
+dv_hk_vowel_diacritics = {'ी': 'I', 'े': 'e', 'ॄ': 'RR', 'ृ': 'R',
+                          'ै': 'ai', 'ॢ': 'lR', 'ो': 'o', 'ौ': 'au',
+                          'ा': 'A', 'ि': 'i', 'ु': 'u', 'ू': 'U'}
+dv_hk_vowels = ['ी', 'े', 'ॄ', 'ृ', 'ै', 'ॢ', 'ो', 'ौ', 'ा', 'ि', 'ु', 'ू']
+dv_hk_consonants = ['क', 'ख', 'ग', 'घ', 'ङ',
+                    'च', 'छ', 'ज', 'झ', 'ञ',
+                    'ट', 'ठ', 'ड', 'ढ', 'ण',
+                    'त', 'थ', 'द', 'ध', 'न',
+                    'प', 'फ', 'ब', 'भ', 'म',
+                    'य', 'र', 'ल', 'व',
+                    'श', 'ष', 'स', 'ह']
+dv_hk_diacritics = ['ं', 'ः', 'ऽ']
+dv_hk_punctuation = ['।', '।।']
 
 
-# Função responsável pela conversão.
+def dvhk(input_text):
 
+    """
+    :param input_text: Text to be transliterated, written in Devanagari.
+    :return: Text in Harvard-Kyoto
+    """
 
-def conversor(entrada):
-    ''' conversor(str) >> str'''
-    if entrada[-1] != ' ':
-        entrada = '%s  ' % entrada
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
+    i = -1
 
-    saida = []
-    for i in range(len(entrada)):
-        c = entrada[i]
-
-        if c not in dv_hk_unicode.keys() and c not in dv_hk_vogais:
-            saida.append(c)
+    for letter in input_text:
+        i += 1
+        if letter not in dv_hk_unicode.keys() and letter not in dv_hk_vowels:
+            output_text.append(letter)
             continue
 
-        if i == len(entrada)-2:
+        if i == len(input_text)-2:
             break
 
-        if c not in dv_hk_unicode and c in dv_hk_vogais:
-            saida.append(dv_hk_diacríticos_vogais[c])
-        elif c in dv_hk_consoantes:
-            if entrada[i + 1] in dv_hk_diacríticos_vogais:
-                saida.append(dv_hk_unicode[c])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_hk_consoantes:
-                saida.append(dv_hk_unicode[c])
-                saida.append('a')
-            elif entrada[i + 1] in dv_hk_diacriticos or entrada[i + 1] in dv_hk_pontuacao:
-                saida.append(dv_hk_unicode[c])
-                saida.append('a')
+        if letter not in dv_hk_unicode and letter in dv_hk_vowels:
+            output_text.append(dv_hk_vowel_diacritics[letter])
+        elif letter in dv_hk_consonants:
+            if input_text[i + 1] in dv_hk_vowel_diacritics:
+                output_text.append(dv_hk_unicode[letter])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_hk_consonants:
+                output_text.append(dv_hk_unicode[letter])
+                output_text.append('a')
+            elif input_text[i + 1] in dv_hk_diacritics or input_text[i + 1] in dv_hk_punctuation:
+                output_text.append(dv_hk_unicode[letter])
+                output_text.append('a')
             else:
-                if entrada[i + 1] == '्':
-                    saida.append(dv_hk_unicode[c])
+                if input_text[i + 1] == '्':
+                    output_text.append(dv_hk_unicode[letter])
                 else:
                     print('epa')
         else:
-            saida.append(dv_hk_unicode[c])
+            output_text.append(dv_hk_unicode[letter])
 
-        for c in saida:
-            if c == '्':
-                saida.pop(saida.index(c))
+        for a in output_text:
+            if a == '्':
+                output_text.pop(output_text.index(a))
 
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 if __name__ == '__main__':
-    conversor(input(">>>"))
+    dvhk(input(">>>"))
