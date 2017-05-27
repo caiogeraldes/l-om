@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 """
-Transliterador Harvard-Kyoto, IAST e Devanāgarī.
+Module of script conversion between systems of representation of Classical Sanskrit Devanagari. Works with IAST, 
+Harvard-Kyoto and Devanagari itself.
 """
 
-'''Dicionários para HK >> Dv'''
+'''Dictionaries for HK >> Dv'''
 hk_dv_unicode = {'M': '\u0902', 'H': '\u0903',
                  'a': '\u0905', 'A': '\u0906', 'i': '\u0907', 'I': '\u0908',
                  'u': '\u0909', 'U': '\u090A', 'R': '\u090B', 'RR': '\u0960', 'lR': '\u090C',
@@ -38,7 +39,7 @@ hk_dv_consoantes_especiais = ['G', 'J', 'N', 'n',
 hk_dv_diacriticos = ['M', 'H', '\'']
 hk_dv_pontuacao = ['|', '||']
 
-'''Dicionários para HK >> IAST'''
+'''Dictionaries for HK >> IAST'''
 hk_iast_unicode = {
     'M': 'ṃ',
     'H': 'ḥ',
@@ -81,7 +82,7 @@ hk_iast_unicode = {
     '||': '\u0964'
 }
 
-'''Dicionário para IAST >> DV'''
+'''Dictionaries for IAST >> DV'''
 iast_dv_unicode = {'ṃ': '\u0902', 'ḥ': '\u0903',
                    'a': '\u0905', 'ā': '\u0906',
                    'i': '\u0907', 'ī': '\u0908',
@@ -117,7 +118,7 @@ iast_dv_consoantes_especiais = ['ṅ', 'ñ', 'ṇ', 'n',
 iast_dv_diacriticos = ['ṃ', 'ḥ', '\'']
 iast_dv_pontuação = ['|', '||']
 
-'''Dicionário para DV >> IAST'''
+'''Dictionaries for DV >> IAST'''
 dv_iast_unicode = {'ट': 'ṭ', 'ण': 'ṇ', 'ऊ': 'ū', 'ऋ': 'ṛ',
                    'श': 'ś', 'द': 'd', 'उ': 'u', 'ग': 'g',
                    'ज': 'j', 'थ': 'th', 'अ': 'a', 'आ': 'ā',
@@ -145,7 +146,7 @@ dv_iast_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
 dv_iast_diacriticos = ['ं', 'ः', 'ऽ']
 dv_iast_pontuacao = ['।', '।।']
 
-'''Dicionário para DV >> HK'''
+'''Dictionaries for DV >> HK'''
 dv_hk_unicode = {'ट': 'T', 'ण': 'N', 'ऊ': 'U', 'ऋ': 'R',
                  'श': 'z', 'द': 'd', 'उ': 'u', 'ग': 'g',
                  'ज': 'j', 'थ': 'th', 'अ': 'a', 'आ': 'A',
@@ -173,7 +174,7 @@ dv_hk_consoantes = ['क', 'ख', 'ग', 'घ', 'ङ',
 dv_hk_diacriticos = ['ं', 'ः', 'ऽ']
 dv_hk_pontuacao = ['।', '।।']
 
-'''Dicionário para IAST >> HK'''
+'''Dictionary for IAST >> HK'''
 iast_hk_unicode = {'i': 'i', 'p': 'p', "'": "'",
                    'u': 'u', 'ś': 'z', 'k': 'k',
                    'ñ': 'J', 'n': 'n', 't': 't',
@@ -189,298 +190,298 @@ iast_hk_unicode = {'i': 'i', 'p': 'p', "'": "'",
                    's': 's', 'ṭ': 'T'}
 
 
-def hkdv(entrada):
+def hkdv(input_text):
 
     """
-    :param entrada: str
-    :return: str
+    :param input_text: Text to be transliterated, written in Harvard-Kyoto.
+    :return: Text in Devanagari.
     """
 
-    if entrada[-1] != ' ':
-        entrada = entrada.center(len(entrada)+2)
-    saida = []
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
     i = -1
-    # Dicionário de correspondências HK>>DV
+    # Dictionarie de correspondências HK>>DV
 
-    for letra in entrada:
+    for letter in input_text:
         i += 1
-        if letra == " ":
-            saida.append(" ")
-        elif letra not in hk_dv_unicode:
-            saida.append(letra)
+        if letter == " ":
+            output_text.append(" ")
+        elif letter not in hk_dv_unicode:
+            output_text.append(letter)
         else:
-            if letra in hk_dv_vogais:
-                if letra == 'a':
-                    if entrada[i + 1] == 'i':
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append(hk_dv_diacriticos_vogais['ai'])
+            if letter in hk_dv_vogais:
+                if letter == 'a':
+                    if input_text[i + 1] == 'i':
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append(hk_dv_diacriticos_vogais['ai'])
                         else:
-                            saida.append(hk_dv_unicode['ai'])
-                    elif entrada[i + 1] == 'u':
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append(hk_dv_diacriticos_vogais['au'])
+                            output_text.append(hk_dv_unicode['ai'])
+                    elif input_text[i + 1] == 'u':
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append(hk_dv_diacriticos_vogais['au'])
                         else:
-                            saida.append(hk_dv_unicode['au'])
+                            output_text.append(hk_dv_unicode['au'])
                     else:
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append('')
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append('')
                         else:
-                            saida.append(hk_dv_unicode[letra])
-                elif letra == 'i' or letra == 'u':
-                    if entrada[i - 1] == 'a':
+                            output_text.append(hk_dv_unicode[letter])
+                elif letter == 'i' or letter == 'u':
+                    if input_text[i - 1] == 'a':
                         continue
                     else:
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append(hk_dv_diacriticos_vogais[letra])
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append(hk_dv_diacriticos_vogais[letter])
                         else:
-                            saida.append(hk_dv_unicode[letra])
-                elif letra == 'R':
-                    if entrada[i + 1] == 'R':
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append(hk_dv_diacriticos_vogais['RR'])
+                            output_text.append(hk_dv_unicode[letter])
+                elif letter == 'R':
+                    if input_text[i + 1] == 'R':
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append(hk_dv_diacriticos_vogais['RR'])
                         else:
-                            saida.append(hk_dv_unicode['RR'])
-                    elif entrada[i - 1] == 'R' or entrada[i - 1] == 'l':
+                            output_text.append(hk_dv_unicode['RR'])
+                    elif input_text[i - 1] == 'R' or input_text[i - 1] == 'l':
                         continue
                     else:
-                        if entrada[i - 1] in hk_dv_consoantes:
-                            saida.append(hk_dv_diacriticos_vogais[letra])
+                        if input_text[i - 1] in hk_dv_consoantes:
+                            output_text.append(hk_dv_diacriticos_vogais[letter])
                         else:
-                            saida.append(hk_dv_unicode[letra])
+                            output_text.append(hk_dv_unicode[letter])
                 else:
-                    if entrada[i - 1] in hk_dv_consoantes:
-                        saida.append(hk_dv_diacriticos_vogais[letra])
+                    if input_text[i - 1] in hk_dv_consoantes:
+                        output_text.append(hk_dv_diacriticos_vogais[letter])
                     else:
-                        saida.append(hk_dv_unicode[letra])
-            elif letra in hk_dv_consoantes:
-                if letra == 'l' and entrada[i + 1] == 'R':
-                    if entrada[i - 1] in hk_dv_consoantes:
-                        saida.append(hk_dv_diacriticos_vogais['lR'])
+                        output_text.append(hk_dv_unicode[letter])
+            elif letter in hk_dv_consoantes:
+                if letter == 'l' and input_text[i + 1] == 'R':
+                    if input_text[i - 1] in hk_dv_consoantes:
+                        output_text.append(hk_dv_diacriticos_vogais['lR'])
                     else:
-                        saida.append(hk_dv_unicode['lR'])
-                elif entrada[i + 1] == 'h' and letra not in hk_dv_consoantes_especiais:
-                    saida.append(hk_dv_unicode['%sh' % letra])
-                elif entrada[i] == 'h' and entrada[i - 1] in hk_dv_consoantes:
+                        output_text.append(hk_dv_unicode['lR'])
+                elif input_text[i + 1] == 'h' and letter not in hk_dv_consoantes_especiais:
+                    output_text.append(hk_dv_unicode['%sh' % letter])
+                elif input_text[i] == 'h' and input_text[i - 1] in hk_dv_consoantes:
                     continue
-                elif entrada[i + 1] not in hk_dv_vogais:
-                    saida.append(hk_dv_unicode[letra])
-                    saida.append('\u094D')
+                elif input_text[i + 1] not in hk_dv_vogais:
+                    output_text.append(hk_dv_unicode[letter])
+                    output_text.append('\u094D')
                 else:
-                    saida.append(hk_dv_unicode[letra])
+                    output_text.append(hk_dv_unicode[letter])
             else:
-                saida.append(hk_dv_unicode[letra])
+                output_text.append(hk_dv_unicode[letter])
 
-    saida = "".join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = "".join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 
-def hkiast(entrada):
+def hkiast(input_text):
 
     """
-    :param entrada: str
-    :return: str
+    :param input_text: Text to be transliterated, written in Harvard-Kyoto.
+    :return: Text in IAST.
     """
 
-    if entrada[-1] != ' ':
-        entrada = entrada.center(len(entrada)+2)
-    saida = []
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
 
-    for i in range(len(entrada)):
-        c = entrada[i]
+    for i in range(len(input_text)):
+        c = input_text[i]
 
         if c not in hk_iast_unicode.keys():
-            saida.append(c)
+            output_text.append(c)
             continue
 
-        if c == 'l' and entrada[i + 1] == 'R':
-            saida.append(hk_iast_unicode['lR'])
-        elif c == 'R' and entrada[i - 1] == 'l':
+        if c == 'l' and input_text[i + 1] == 'R':
+            output_text.append(hk_iast_unicode['lR'])
+        elif c == 'R' and input_text[i - 1] == 'l':
             continue
         else:
-            saida.append(hk_iast_unicode[c])
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+            output_text.append(hk_iast_unicode[c])
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 
-def iastdv(entrada):
+def iastdv(input_text):
 
     """
-    :param entrada: str 
-    :return: str 
+    :param input_text: Text to be transliterated, written in IAST.
+    :return: Text in Devanagari.
     """
 
-    if entrada[-1] != ' ':
-        entrada = entrada.center(len(entrada)+2)
-    saida = []
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
     i = -1
 
-    for letra in entrada:
+    for letter in input_text:
             i += 1
-            if letra not in iast_dv_unicode:
-                saida.append(letra)
+            if letter not in iast_dv_unicode:
+                output_text.append(letter)
             else:
-                if letra in iast_dv_vogais:
-                    if letra == 'a':
-                        if entrada[i + 1] == 'i':
-                            if entrada[i - 1] in iast_dv_consoantes:
-                                saida.append(iast_dv_diacríticos_vogais['ai'])
+                if letter in iast_dv_vogais:
+                    if letter == 'a':
+                        if input_text[i + 1] == 'i':
+                            if input_text[i - 1] in iast_dv_consoantes:
+                                output_text.append(iast_dv_diacríticos_vogais['ai'])
                             else:
-                                saida.append(iast_dv_unicode['ai'])
-                        elif entrada[i + 1] == 'u':
-                            if entrada[i - 1] in iast_dv_consoantes:
-                                saida.append(iast_dv_diacríticos_vogais['au'])
+                                output_text.append(iast_dv_unicode['ai'])
+                        elif input_text[i + 1] == 'u':
+                            if input_text[i - 1] in iast_dv_consoantes:
+                                output_text.append(iast_dv_diacríticos_vogais['au'])
                             else:
-                                saida.append(iast_dv_unicode['au'])
+                                output_text.append(iast_dv_unicode['au'])
                         else:
-                            if entrada[i - 1] in iast_dv_consoantes:
-                                saida.append('')
+                            if input_text[i - 1] in iast_dv_consoantes:
+                                output_text.append('')
                             else:
-                                saida.append(iast_dv_unicode[letra])
-                    elif letra == 'i' or letra == 'u':
-                        if entrada[i - 1] == 'a':
+                                output_text.append(iast_dv_unicode[letter])
+                    elif letter == 'i' or letter == 'u':
+                        if input_text[i - 1] == 'a':
                             continue
                         else:
-                            if entrada[i - 1] in iast_dv_consoantes:
-                                saida.append(iast_dv_diacríticos_vogais[letra])
+                            if input_text[i - 1] in iast_dv_consoantes:
+                                output_text.append(iast_dv_diacríticos_vogais[letter])
                             else:
-                                saida.append(iast_dv_unicode[letra])
+                                output_text.append(iast_dv_unicode[letter])
                     else:
-                        if entrada[i - 1] in iast_dv_consoantes:
-                            saida.append(iast_dv_diacríticos_vogais[letra])
+                        if input_text[i - 1] in iast_dv_consoantes:
+                            output_text.append(iast_dv_diacríticos_vogais[letter])
                         else:
-                            saida.append(iast_dv_unicode[letra])
-                elif letra in iast_dv_consoantes:
-                    if entrada[i + 1] == 'h' and letra not in iast_dv_consoantes_especiais:
-                        saida.append(iast_dv_unicode['%sh' % letra])
-                    elif letra == 'h' and entrada[i - 1] in iast_dv_consoantes:
+                            output_text.append(iast_dv_unicode[letter])
+                elif letter in iast_dv_consoantes:
+                    if input_text[i + 1] == 'h' and letter not in iast_dv_consoantes_especiais:
+                        output_text.append(iast_dv_unicode['%sh' % letter])
+                    elif letter == 'h' and input_text[i - 1] in iast_dv_consoantes:
                         continue
-                    elif entrada[i + 1] not in iast_dv_vogais:
-                        saida.append(iast_dv_unicode[letra])
-                        saida.append('\u094D')
+                    elif input_text[i + 1] not in iast_dv_vogais:
+                        output_text.append(iast_dv_unicode[letter])
+                        output_text.append('\u094D')
                     else:
-                        saida.append(iast_dv_unicode[letra])
+                        output_text.append(iast_dv_unicode[letter])
                 else:
-                    saida.append(iast_dv_unicode[letra])
+                    output_text.append(iast_dv_unicode[letter])
 
-    saida = "".join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = "".join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 
-def dviast(entrada):
+def dviast(input_text):
 
     """
-    :param entrada: str
-    :return: str
+    :param input_text: Text to be transliterated, written in Devanagari
+    :return: Text in IAST
     """
 
-    if entrada[-1] != ' ':
-        entrada = entrada.center(len(entrada)+2)
-    saida = []
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
     i = -1
 
-    for letra in entrada:
+    for letra in input_text:
         i += 1
         if letra not in dv_iast_unicode.keys() and letra not in dv_iast_vogais:
-            saida.append(letra)
+            output_text.append(letra)
             continue
 
-        if i == len(entrada)-2:
+        if i == len(input_text)-2:
             break
 
         if letra not in dv_iast_unicode and letra in dv_iast_vogais:
-            saida.append(dv_iast_diacriticos_vogais[letra])
+            output_text.append(dv_iast_diacriticos_vogais[letra])
         elif letra in dv_iast_consoantes:
-            if entrada[i + 1] in dv_iast_diacriticos_vogais:
-                saida.append(dv_iast_unicode[letra])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_iast_consoantes:
-                saida.append(dv_iast_unicode[letra])
-                saida.append('a')
-            elif entrada[i + 1] in dv_iast_diacriticos or entrada[i + 1] in dv_iast_pontuacao:
-                saida.append(dv_iast_unicode[letra])
-                saida.append('a')
+            if input_text[i + 1] in dv_iast_diacriticos_vogais:
+                output_text.append(dv_iast_unicode[letra])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_iast_consoantes:
+                output_text.append(dv_iast_unicode[letra])
+                output_text.append('a')
+            elif input_text[i + 1] in dv_iast_diacriticos or input_text[i + 1] in dv_iast_pontuacao:
+                output_text.append(dv_iast_unicode[letra])
+                output_text.append('a')
             else:
-                if entrada[i + 1] == '्':
-                    saida.append(dv_iast_unicode[letra])
+                if input_text[i + 1] == '्':
+                    output_text.append(dv_iast_unicode[letra])
                 else:
                     print('epa')
         else:
-            saida.append(dv_iast_unicode[letra])
+            output_text.append(dv_iast_unicode[letra])
 
-        for a in saida:
+        for a in output_text:
             if a == '्':
-                saida.pop(saida.index(a))
+                output_text.pop(output_text.index(a))
 
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 
-def dvhk(entrada):
+def dvhk(input_text):
 
     """
-    :param entrada: 
-    :return: 
+    :param input_text: Text to be transliterated, written in Devanagari.
+    :return: Text in Harvard-Kyoto
     """
 
-    if entrada[-1] != ' ':
-        entrada = entrada.center(len(entrada)+2)
-    saida = []
+    if input_text[-1] != ' ':
+        input_text = input_text.center(len(input_text) + 2)
+    output_text = []
     i = -1
 
-    for letra in entrada:
+    for letra in input_text:
         i += 1
         if letra not in dv_hk_unicode.keys() and letra not in dv_hk_vogais:
-            saida.append(letra)
+            output_text.append(letra)
             continue
 
-        if i == len(entrada)-2:
+        if i == len(input_text)-2:
             break
 
         if letra not in dv_hk_unicode and letra in dv_hk_vogais:
-            saida.append(dv_hk_diacríticos_vogais[letra])
+            output_text.append(dv_hk_diacríticos_vogais[letra])
         elif letra in dv_hk_consoantes:
-            if entrada[i + 1] in dv_hk_diacríticos_vogais:
-                saida.append(dv_hk_unicode[letra])
-            elif entrada[i + 1] == ' ' or entrada[i + 1] in dv_hk_consoantes:
-                saida.append(dv_hk_unicode[letra])
-                saida.append('a')
-            elif entrada[i + 1] in dv_hk_diacriticos or entrada[i + 1] in dv_hk_pontuacao:
-                saida.append(dv_hk_unicode[letra])
-                saida.append('a')
+            if input_text[i + 1] in dv_hk_diacríticos_vogais:
+                output_text.append(dv_hk_unicode[letra])
+            elif input_text[i + 1] == ' ' or input_text[i + 1] in dv_hk_consoantes:
+                output_text.append(dv_hk_unicode[letra])
+                output_text.append('a')
+            elif input_text[i + 1] in dv_hk_diacriticos or input_text[i + 1] in dv_hk_pontuacao:
+                output_text.append(dv_hk_unicode[letra])
+                output_text.append('a')
             else:
-                if entrada[i + 1] == '्':
-                    saida.append(dv_hk_unicode[letra])
+                if input_text[i + 1] == '्':
+                    output_text.append(dv_hk_unicode[letra])
                 else:
                     print('epa')
         else:
-            saida.append(dv_hk_unicode[letra])
+            output_text.append(dv_hk_unicode[letra])
 
-        for a in saida:
+        for a in output_text:
             if a == '्':
-                saida.pop(saida.index(a))
+                output_text.pop(output_text.index(a))
 
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text
 
 
-def iasthk(entrada):
+def iasthk(input_text):
 
     """
-    :param entrada: 
-    :return: 
+    :param input_text: Text to be transliterated, written in IAST.
+    :return: Text in Harvard-Kyoto.
     """
 
-    saida = []
-    for letra in entrada:
+    output_text = []
+    for letra in input_text:
         if letra not in iast_hk_unicode:
-            saida.append(letra)
+            output_text.append(letra)
         else:
-            saida.append(letra(iast_hk_unicode[letra]))
+            output_text.append(letra(iast_hk_unicode[letra]))
 
-    saida = ''.join(saida)
-    saida = saida.strip()
-    return saida
+    output_text = ''.join(output_text)
+    output_text = output_text.strip()
+    return output_text

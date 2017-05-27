@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def checker(entrada):
+def checker(input):
 
     dv = ['थ', 'ह', 'ण', 'ऐ', 'ख', 'म', 'द', 'छ', 'उ', 'ल', 'च', 'अ',
           'क', 'त', 'ढ', 'ड', 'य', 'व', 'ऋ', 'ऊ', 'प', 'ष', 'घ',
@@ -11,7 +11,7 @@ def checker(entrada):
     iast = [ 'ñ', 'ṭ', 'ḍ', 'ṇ','ś', 'ṣ','ṅ', 'ṃ', 'ḥ', 'ā', 'ī', 'ū', 'ṛ', 'ṝ', 'ḷ']
     hk = ['A', 'I', 'U', 'R', 'L', 'G', 'J', 'T', 'D', 'N', 'z', 'M']
 
-    for i in entrada:
+    for i in input:
         if i in dv:
             translit = 'Devanagari'
             return translit
