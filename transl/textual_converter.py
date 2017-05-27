@@ -26,17 +26,20 @@ import lom
 import checktranslit
 
 
-def textual_conversor(text, type_input='Iast', type_output="Devanagari"):
+def textual_conversor(input_file, output_file="output.txt", type_input='Iast', type_output="Devanagari"):
+
     """
-    :param text: 
+    
+    :param input_file: 
+    :param output_file: 
     :param type_input: 
     :param type_output: 
     :return: 
     """
 
-    input_file = open("%s.txt" % text, mode='r')
+    input_file = open("%s.txt" % input_file, mode='r')
     lines = input_file.readlines()
-    output_file = open("%s_output.txt" % text, mode="x")
+    output_file = open("%s.txt" % output_file, mode="x")
 
     while type_input is None:
         print("The type of input is %s? [Y/N]" % checktranslit.checker(lines[0]))
@@ -71,4 +74,4 @@ def textual_conversor(text, type_input='Iast', type_output="Devanagari"):
         print("The type of input isn't valid.")
 
 if __name__ == "__main__":
-    textual_conversor("textos/teste")
+    textual_conversor(input("Texto de entrada: "), input("Texto de saída: "))
